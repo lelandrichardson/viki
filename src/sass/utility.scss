@@ -11,9 +11,18 @@
 }
 
 .cleafix {
-
+	overflow: auto;
+  	zoom: 1;
 }
 
 .hide {
+	display: none;
+}
 
+.inline {
+	display:inline;
+}
+
+.inline-block {
+	display:inline-block;
 }

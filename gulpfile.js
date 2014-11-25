@@ -12,7 +12,8 @@ gulp.task('browserify', function() {
 
 gulp.task('sass', function () {
     gulp.src('src/sass/*.scss')
-        .pipe(sass())
+        .pipe(sass({ style: 'compressed' }))
+        .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));
 });
 
