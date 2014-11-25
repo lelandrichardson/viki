@@ -1,0 +1,32 @@
+.top-nav {
+	padding: .6em 1.4em;
+	background-color: rgba(0,0,0,0.3);
+
+	border-bottom:1px solid transparent;
+
+	transition:border-color 0.2s ease-in-out;
+
+	&:hover {
+		border-color:#fefefe;
+	}
+}
+
+.nav-item {
+	
+}
+
+.nav-btn {
+	box-shadow: none;
+	border: none;
+	height: auto !important;
+
+	margin: 0 .25em;
+	padding: .3em .8em;
+	border-radius: .25rem;
+
+	color:#fefefe;
+
+	&:hover {
+		background-color:rgba(0,0,0,0.1);
+	}
+}

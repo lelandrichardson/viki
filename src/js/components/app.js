@@ -1,11 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
+var TopNav = require('../components/TopNav');
 
 var Viki = React.createClass({
 
 	render: function() {
 		return (
-			<h2>this is viki</h2>
+			<TopNav />
 		);
 	}
 
