@@ -19185,9 +19185,14 @@ var TopNav = React.createClass({displayName: 'TopNav',
 		return (
 			React.DOM.div({className: "top-nav"}, 
 				React.DOM.ul(null, 
-					React.DOM.li({className: "nav-item inline"}, 
+					React.DOM.li({className: "inline"}, 
 						React.DOM.a({className: "nav-btn"}, 
-							Icon({type: "navicon"})
+							Icon({type: "cog"})
+						)
+					), 
+					React.DOM.li({className: "inline right"}, 
+						React.DOM.a({className: "nav-btn"}, 
+							Icon({type: "plus"})
 						)
 					)
 				)

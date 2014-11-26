@@ -8,9 +8,14 @@ var TopNav = React.createClass({
 		return (
 			<div className="top-nav">
 				<ul>
-					<li className="nav-item inline">
+					<li className="inline">
 						<a className="nav-btn">
-							<Icon type="navicon" />
+							<Icon type="cog" />
+						</a>
+					</li>
+					<li className="inline right">
+						<a className="nav-btn">
+							<Icon type="plus" />
 						</a>
 					</li>
 				</ul>
