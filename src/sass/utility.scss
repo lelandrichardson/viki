@@ -2,6 +2,14 @@
     text-align:center;
 }
 
+.align-right {
+	text-align: right;
+}
+
+.align-left {
+	text-align: left;
+}
+
 .left {
     float:left;
 }
@@ -26,3 +34,67 @@
 .inline-block {
 	display: inline-block;
 }
+
+@mixin spacing-utility($suffix, $spacing) {
+	.pad#{$suffix} {
+		padding:$spacing;
+	}
+	.padl#{$suffix} {
+		padding-left:$spacing;
+	}
+	.padt#{$suffix} {
+		padding-top:$spacing;
+	}
+	.padr#{$suffix} {
+		padding-right:$spacing;
+	}
+	.padb#{$suffix} {
+		padding-bottom:$spacing;
+	}
+	.m#{$suffix} {
+		margin:$spacing;
+	}
+	.ml#{$suffix} {
+		margin-left:$spacing;
+	}
+	.mt#{$suffix} {
+		margin-top:$spacing;
+	}
+	.mr#{$suffix} {
+		margin-right:$spacing;
+	}
+	.mb#{$suffix} {
+		margin-bottom:$spacing;
+	}
+}
+
+@include spacing-utility('4', 4px);
+@include spacing-utility('8', 8px);
+@include spacing-utility('20', 20px);
+
+
+
+
+@mixin color-utility($suffix, $color) {
+	.border-#{$suffix} {
+		border-color: $color;
+	}
+	.text-#{$suffix} {
+		color: $color;
+	}
+	.bg-#{$suffix} {
+		background-color: $color;
+	}
+}
+
+@include color-utility('success', $color-success);
+@include color-utility('info', $color-info);
+@include color-utility('warning', $color-warning);
+@include color-utility('danger', $color-danger);
+
+
+
+
+
+
+
