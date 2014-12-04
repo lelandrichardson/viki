@@ -16,14 +16,14 @@ gulp.task('browserify', function() {
 });
 
 gulp.task('sass', function () {
-    gulp.src('src/sass/*.scss')
+    gulp.src(['src/sass/reset.scss','src/sass/*.scss'])
         .pipe(sass({ style: 'compressed' }).on('error',swallowError))
         .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('copy', function() {
-    gulp.src('src/index.html')
+    gulp.src('src/*.html')
       .pipe(gulp.dest('dist'));
 });
 

@@ -1,0 +1,76 @@
+@import "_variables";
+
+
+$bg-color--default: #e0e0e0;
+$txt-color--default: #333333;
+
+@mixin button-color($foreground, $background) {
+	background-color: $background;
+	color: $foreground;
+
+	&:hover {
+		background-color: lighten($background, 5%);
+		//color: darken($foreground, 10%);
+	}
+
+	&:active {
+		background-color: darken($background, 5%);
+		//color: darken($foreground, 10%);
+	}
+}
+
+
+.btn,
+button {
+	cursor: pointer;
+	display: inline-block;
+	min-height: 1em;
+	outline: 0;
+	border: none;
+	vertical-align: baseline;
+	background-color: $bg-color--default;
+	color: $txt-color--default;
+	padding: .75em 1.5em;
+	user-select:none;
+
+	line-height: 1;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	background-image: none;
+	border-radius: 4px;
+	box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(39,41,43,.15) inset;
+
+	transition: background-color 0.1s ease-in, color 0.1s ease-in;
+
+	&:hover {
+		background-color: lighten($bg-color--default, 5%);
+		background-image: none;
+		box-shadow: '';
+		color: darken($txt-color--default, 5%);
+	}
+
+	&:active {
+		background-color: darken($bg-color--default, 5%);
+		background-image: '';
+		color: darken($txt-color--default, 5%);
+		box-shadow: 0 0 0 1px transparent inset, 0 1px 4px 0 rgba(39,41,43,.15) inset;
+	}
+
+	&.primary {
+		@include button-color(#fefefe, $color-primary);
+	}
+
+	&.inverted {
+		@include button-color(#fefefe, $gray-darker);
+	}
+
+	&.danger {
+		@include button-color(#fefefe, $color-danger);
+	}
+
+	&.success {
+		@include button-color(#fefefe, $color-success);
+	}
+}
