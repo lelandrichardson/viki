@@ -3,24 +3,43 @@
   "version": "0.0.0",
   "description": "",
   "main": "gulpfile.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "envify": "^1.2.1",
     "es6-promise": "^1.0.0",
+    "react": "~0.11.2",
+    "react-flux":"~0.0.14",
+    "react-font-awesome":"*",
+
+    "express": "latest",
+    "body-parser": "~1.9.0",
+    "method-override": "~2.3.0",
+    "morgan": "~1.4.1",
+    "helmet": "~0.5.0",
+    "mongoose": "~3.8.3",
+    "handlebars-runtime": "~1.0.12",
+    "express3-handlebars": "~0.5.0",
+    "MD5": "~1.2.0",
+
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
     "gulp": "^3.8.0",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.2.0",
     "gulp-sass":"^1.1.0",
-    "react": "~0.11.2",
-    "reactify": "^0.13.1",
-    "react-flux":"~0.0.14",
-    "react-font-awesome":"*"
-  },
-  "devDependencies": {
-
+    "reactify": "^0.13.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Leland Richardson",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lelandrichardson/viki.git"
+  }
 }

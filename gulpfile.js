@@ -9,21 +9,21 @@ function swallowError (error) {
 }
 
 gulp.task('browserify', function() {
-    gulp.src('src/js/main.js')
+    gulp.src('src/client/js/main.js')
       .pipe(browserify({ transform: 'reactify' }).on('error',swallowError))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('sass', function () {
-    gulp.src(['src/sass/reset.scss','src/sass/*.scss'])
+    gulp.src(['src/client/sass/reset.scss','src/client/sass/*.scss'])
         .pipe(sass({ style: 'compressed' }).on('error',swallowError))
         .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('copy', function() {
-    gulp.src('src/*.html')
+    gulp.src('src/client/*.html')
       .pipe(gulp.dest('dist'));
 });
 
