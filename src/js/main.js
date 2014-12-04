@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
-var APP = require('./components/app');
+var VikiApp = require('./components/VikiApp');
 var React = require('react');
 
 React.renderComponent(
-	<APP />,
+	<VikiApp />,
 	document.getElementById('main'));

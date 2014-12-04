@@ -10,15 +10,17 @@
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.2.0",
     "gulp-sass":"^1.1.0",
-    "react": "^0.10.0",
-    "reactify": "^0.13.1"
+    "react": "~0.11.2",
+    "reactify": "^0.13.1",
+    "react-flux":"~0.0.14",
+    "react-font-awesome":"*"
   },
   "devDependencies": {
 
-    },
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Leland Richardson",
   "license": "MIT"
 }
