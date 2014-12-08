@@ -8,7 +8,7 @@ module.exports = {
 	templateEngine: 'swig',
 	// The secret should be set to a non-guessable string that
 	// is used to compute a session hash
-	sessionSecret: 'MEAN',
+	sessionSecret: 'some words about viki',
 	// The name of the MongoDB collection to store sessions in
 	sessionCollection: 'sessions',
 	// The session cookie settings
@@ -41,20 +41,20 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				// 'public/lib/bootstrap/dist/css/bootstrap.css',
+				// 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
-				'public/lib/angular/angular.js',
-				'public/lib/angular-resource/angular-resource.js',
-				'public/lib/angular-animate/angular-animate.js',
-				'public/lib/angular-ui-router/release/angular-ui-router.js',
-				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+				// 'public/lib/angular/angular.js',
+				// 'public/lib/angular-resource/angular-resource.js',
+				// 'public/lib/angular-animate/angular-animate.js',
+				// 'public/lib/angular-ui-router/release/angular-ui-router.js',
+				// 'public/lib/angular-ui-utils/ui-utils.js',
+				// 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css'
+			// 'public/modules/**/css/*.css'
 		],
 		js: [
 			'public/config.js',
@@ -63,8 +63,8 @@ module.exports = {
 			'public/modules/*/*[!tests]*/*.js'
 		],
 		tests: [
-			'public/lib/angular-mocks/angular-mocks.js',
-			'public/modules/*/tests/*.js'
+			// 'public/lib/angular-mocks/angular-mocks.js',
+			// 'public/modules/*/tests/*.js'
 		]
 	}
 };

@@ -360,3 +360,157 @@ textarea {
   color: #fefefe; }
   .nav-btn:hover {
     background-color: rgba(0, 0, 0, 0.3); }
+
+.center {
+  text-align: center; }
+
+.align-right {
+  text-align: right; }
+
+.align-left {
+  text-align: left; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.cleafix {
+  overflow: auto;
+  zoom: 1; }
+
+.hide {
+  display: none; }
+
+.inline {
+  display: inline; }
+
+.inline-block {
+  display: inline-block; }
+
+.pad4 {
+  padding: 4px; }
+
+.padl4 {
+  padding-left: 4px; }
+
+.padt4 {
+  padding-top: 4px; }
+
+.padr4 {
+  padding-right: 4px; }
+
+.padb4 {
+  padding-bottom: 4px; }
+
+.m4 {
+  margin: 4px; }
+
+.ml4 {
+  margin-left: 4px; }
+
+.mt4 {
+  margin-top: 4px; }
+
+.mr4 {
+  margin-right: 4px; }
+
+.mb4 {
+  margin-bottom: 4px; }
+
+.pad8 {
+  padding: 8px; }
+
+.padl8 {
+  padding-left: 8px; }
+
+.padt8 {
+  padding-top: 8px; }
+
+.padr8 {
+  padding-right: 8px; }
+
+.padb8 {
+  padding-bottom: 8px; }
+
+.m8 {
+  margin: 8px; }
+
+.ml8 {
+  margin-left: 8px; }
+
+.mt8 {
+  margin-top: 8px; }
+
+.mr8 {
+  margin-right: 8px; }
+
+.mb8 {
+  margin-bottom: 8px; }
+
+.pad20 {
+  padding: 20px; }
+
+.padl20 {
+  padding-left: 20px; }
+
+.padt20 {
+  padding-top: 20px; }
+
+.padr20 {
+  padding-right: 20px; }
+
+.padb20 {
+  padding-bottom: 20px; }
+
+.m20 {
+  margin: 20px; }
+
+.ml20 {
+  margin-left: 20px; }
+
+.mt20 {
+  margin-top: 20px; }
+
+.mr20 {
+  margin-right: 20px; }
+
+.mb20 {
+  margin-bottom: 20px; }
+
+.border-success {
+  border-color: #5cb85c; }
+
+.text-success {
+  color: #5cb85c; }
+
+.bg-success {
+  background-color: #5cb85c; }
+
+.border-info {
+  border-color: #5bc0de; }
+
+.text-info {
+  color: #5bc0de; }
+
+.bg-info {
+  background-color: #5bc0de; }
+
+.border-warning {
+  border-color: #f0ad4e; }
+
+.text-warning {
+  color: #f0ad4e; }
+
+.bg-warning {
+  background-color: #f0ad4e; }
+
+.border-danger {
+  border-color: #d9534f; }
+
+.text-danger {
+  color: #d9534f; }
+
+.bg-danger {
+  background-color: #d9534f; }
