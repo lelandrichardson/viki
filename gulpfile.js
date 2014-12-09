@@ -10,7 +10,7 @@ function swallowError (error) {
 
 gulp.task('browserify', function() {
     gulp.src('src/client/js/main.js')
-      .pipe(browserify({ transform: 'reactify' }).on('error',swallowError))
+      .pipe(browserify({ transform: 'reactify', debug: true }).on('error',swallowError))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('dist/js'));
 });

@@ -30,14 +30,14 @@ var ModalMixin = (function() {
 			$modal.on(modalEvents.handleHide, this._hide.bind(this));
 			$modal.on(modalEvents.handleShow, this._show.bind(this));
 
-			handlerProps.forEach(function(prop) {
-				if (this[prop]) {
-					$modal.on(modalEvents[prop], this[prop])
-				}
-				if (this.props[prop]) {
-					$modal.on(modalEvents[prop], this.props[prop])
-				}
-			}.bind(this));
+			// handlerProps.forEach(function(prop) {
+			// 	if (this[prop]) {
+			// 		$modal.on(modalEvents[prop], this[prop])
+			// 	}
+			// 	if (this.props[prop]) {
+			// 		$modal.on(modalEvents[prop], this.props[prop])
+			// 	}
+			// }.bind(this));
 
 			$(document).on("keydown.modal",function(e){
 				if(e.which === 27) {

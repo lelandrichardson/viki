@@ -3,7 +3,10 @@ var AppEvents = require('../AppEvents');
 var Eventable = (function(){
 	return {
 		componentWillUnmount: function() {
-			
+			for(var key in this.subscriptions) {
+				var sub = this.subscriptions[key];
+				AppEvents.removeListener(key, sub);
+			}
 		},
 
 		componentDidMount: function(){

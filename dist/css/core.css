@@ -107,7 +107,7 @@ input[type=text], textarea {
   input[type=text]:hover, textarea:hover {
     border-color: #949494 #a1a1a1 #a1a1a1; }
   input[type=text]:focus, textarea:focus {
-    border-color: #7FA6E5; }
+    border-color: #5587D7; }
 
 textarea {
   min-height: 100px; }
