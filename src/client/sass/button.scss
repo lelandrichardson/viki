@@ -73,4 +73,42 @@ button {
 	&.success {
 		@include button-color(#fefefe, $color-success);
 	}
+
+
+	&.mini {
+		font-size: 0.7em;
+	}
+	&.small {
+		font-size: 0.85em;
+	}
+	// &.default {
+	// 	font-size: 0.7em;
+	// }
+	&.large {
+		font-size: 1.15em;
+	}
+	&.big {
+		font-size: 1.3em;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
