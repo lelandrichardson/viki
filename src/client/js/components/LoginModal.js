@@ -38,7 +38,7 @@ module.exports = React.createClass({
                             <b className="txt-large">Login</b>
                         </div>
                         <div className="modal-body">
-                            <input type="text" className="mb8"
+                            <input type="text" className="mb15"
                                 placeholder="Username"
                                 valueLink={this.linkState('username')} />
                             <input type="password"
