@@ -1,0 +1,46 @@
+@import "_variables";
+
+$size-big: 1.8em;
+$size-large: 1.4em;
+$size-small: 1.2em;
+$size-mini: 1.0em;
+
+.h1 {
+	font-size: $size-big;
+	font-weight: bold;
+	margin: 0.6em 0 0.3em;
+}
+
+.h2 {
+	font-size: $size-large;
+	font-weight: bold;
+	margin: 0.4em 0 0.2em;
+}
+
+.h3 {
+	font-size: $size-small;
+	font-weight: bold;
+	margin: 0.4em 0 0.2em;
+}
+
+.h4 {
+	font-size: $size-mini;
+	font-weight: bold;
+	margin: 0.3em 0 0.2em;
+}
+
+.txt-big {
+	font-size: $size-big;
+}
+
+.txt-large {
+	font-size: $size-large;
+}
+
+.txt-small {
+	font-size: $size-small;
+}
+
+.txt-mini {
+	font-size: $size-mini;
+}

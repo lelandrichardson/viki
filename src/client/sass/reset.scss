@@ -111,6 +111,7 @@ section {
 body {
 	line-height: 1;
 	font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color:#2e2f31;
 }
 
 ol, ul {
@@ -134,4 +135,9 @@ table {
 
 a {
 	cursor: pointer;
+}
+
+hr {
+	border: 1px solid #bababa;
+	border-bottom: 0;
 }

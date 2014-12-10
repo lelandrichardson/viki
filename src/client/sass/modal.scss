@@ -36,6 +36,9 @@ $modal-header-border-color:   #e5e5e5;
 //** Modal footer border color
 $modal-footer-border-color:   $modal-header-border-color;
 
+
+$modal-top-margin: 54px;
+
 $modal-lg:                    900px;
 $modal-md:                    600px;
 $modal-sm:                    300px;
@@ -80,10 +83,11 @@ $modal-sm:                    300px;
     position: relative;
     width: auto;
     margin: 10px;
+    margin-top: $modal-top-margin;
 
     top:-300px;
-    @include opacity(0);
 
+    @include opacity(0);
     @include css3-prefix('transition','opacity 0.3s ease-out, top 0.3s ease-in-out');
 }
 
@@ -116,7 +120,7 @@ $modal-sm:                    300px;
 // Top section of the modal w/ title and dismiss
 .modal-header {
     padding: $modal-title-padding;
-    border-bottom: 1px solid $modal-header-border-color;
+    //border-bottom: 1px solid $modal-header-border-color;
     min-height: ($modal-title-padding + $modal-title-line-height);
 }
 // Close icon
@@ -141,7 +145,7 @@ $modal-sm:                    300px;
 .modal-footer {
     padding: $modal-inner-padding;
     text-align: right; // right align buttons
-    border-top: 1px solid $modal-footer-border-color;
+    //border-top: 1px solid $modal-footer-border-color;
 
     // Properly space out buttons
     .btn + .btn {
@@ -160,17 +164,44 @@ $modal-sm:                    300px;
     }
 }
 
+
 // Scale up the modal
-@media (min-width: $breakpoint-mobile-phone) {
-    // Automatically set modal's width for larger viewports
+@media (min-width: $modal-md + 20px) {
     .modal-dialog {
         width: $modal-md;
-        margin: 30px auto;
+        margin: $modal-top-margin auto;
     }
-    .modal-content {
-        @include box-shadow(0 5px 15px rgba(0,0,0,.5));
+    
+    .modal-lg {
+        width: auto;
+        margin: 10px;
+        margin-top: $modal-top-margin;
     }
+}
 
-    // Modal sizes
-    .modal-sm { width: $modal-sm; }
+@media (min-width: $modal-sm + 20px) {
+    .modal-sm {
+        width: $modal-sm;
+        margin: $modal-top-margin auto;
+    }
+}
+
+@media (min-width: $modal-md + 20px) {
+    // .modal-dialog {
+    //     width: auto;
+    //     margin: 10px;
+    //     margin-top: $modal-top-margin;
+    // }
+
+    .modal-md {
+        width: $modal-md;
+        margin: $modal-top-margin auto;
+    }
+}
+
+@media (min-width: $modal-lg + 20px) {
+    .modal-lg {
+        width: $modal-lg;
+        margin: $modal-top-margin auto;
+    }
 }

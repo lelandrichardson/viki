@@ -88,7 +88,7 @@ var ModalMixin = (function() {
 			return (
 				<button
 					type="button"
-					className="close"
+					className="close right"
 					onClick={this.hide}
 					dangerouslySetInnerHTML={{__html: '&times'}} />
 			);

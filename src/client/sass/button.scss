@@ -82,7 +82,7 @@ button {
 		font-size: 0.85em;
 	}
 	// &.default {
-	// 	font-size: 0.7em;
+	// 	font-size: 1em;
 	// }
 	&.large {
 		font-size: 1.15em;
@@ -94,21 +94,14 @@ button {
 }
 
 
+.close {
+	background: none;
+	padding: 0;
+	font-size: 1.5em;
+	color: #aaa;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	&:hover {
+		color: #666;
+		background:none;
+	}
+}

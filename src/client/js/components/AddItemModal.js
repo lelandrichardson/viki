@@ -29,7 +29,7 @@ var AddItemModal = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             {this.renderCloseButton()}
-                            <strong>Add Item</strong>
+                            <b className="txt-large">Add Item</b>
                         </div>
                         <div className="modal-body">
                             <input 

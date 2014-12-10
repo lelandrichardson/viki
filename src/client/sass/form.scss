@@ -1,24 +1,24 @@
 
 $border-color: #bababa;
+$border-color--focused: #5587D7;
 
 input[type=text],
 textarea {
 	width:100%;
 	padding: 4px;
-
 	outline:none;
 	border:1px solid;
 	border-color: $border-color lighten($border-color,5%) lighten($border-color,5%);
+	box-shadow: none;
 	
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-
-
 	&:hover {
 		border-color: darken($border-color,15%) darken($border-color,10%) darken($border-color,10%);
+		box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 	}
 
 	&:focus {
-		border-color: #5587D7;
+		border-color: $border-color--focused;
+		box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 	}
 }
 

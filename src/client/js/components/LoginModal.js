@@ -35,7 +35,7 @@ module.exports = React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             {this.renderCloseButton()}
-                            <strong>Login</strong>
+                            <b className="txt-large">Login</b>
                         </div>
                         <div className="modal-body">
                             <input type="text" className="mb10"
