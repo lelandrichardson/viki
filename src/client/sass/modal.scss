@@ -37,11 +37,11 @@ $modal-header-border-color:   #e5e5e5;
 $modal-footer-border-color:   $modal-header-border-color;
 
 
-$modal-top-margin: 54px;
+$modal-top-margin:              54px;
 
-$modal-lg:                    900px;
-$modal-md:                    600px;
-$modal-sm:                    300px;
+$modal-lg:                      900px;
+$modal-md:                      600px;
+$modal-sm:                      300px;
 
 // Kill the scroll on the body
 .modal-open {
@@ -51,7 +51,7 @@ $modal-sm:                    300px;
 // Container that the modal scrolls within
 .modal {
     display: none;
-    overflow: hidden;
+    overflow-y: auto;
     position: fixed;
     top: 0;
     right: 0;
@@ -66,8 +66,6 @@ $modal-sm:                    300px;
 
 
     &.shown {
-        //display:block;
-
         .modal-dialog {
             top:0;
             @include opacity(1);
@@ -106,7 +104,7 @@ $modal-sm:                    300px;
 
 // Modal background
 .modal-backdrop {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -120,6 +118,7 @@ $modal-sm:                    300px;
 // Top section of the modal w/ title and dismiss
 .modal-header {
     padding: $modal-title-padding;
+    padding-bottom: 0;
     //border-bottom: 1px solid $modal-header-border-color;
     min-height: ($modal-title-padding + $modal-title-line-height);
 }
@@ -144,6 +143,7 @@ $modal-sm:                    300px;
 // Footer (for actions)
 .modal-footer {
     padding: $modal-inner-padding;
+    padding-top:0;
     text-align: right; // right align buttons
     //border-top: 1px solid $modal-footer-border-color;
 
@@ -187,12 +187,6 @@ $modal-sm:                    300px;
 }
 
 @media (min-width: $modal-md + 20px) {
-    // .modal-dialog {
-    //     width: auto;
-    //     margin: 10px;
-    //     margin-top: $modal-top-margin;
-    // }
-
     .modal-md {
         width: $modal-md;
         margin: $modal-top-margin auto;

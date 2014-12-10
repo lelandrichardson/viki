@@ -27,17 +27,8 @@ var ModalMixin = (function() {
 		componentDidMount: function() {
 			var $modal = $(this.getDOMNode());
 
-			$modal.on(modalEvents.handleHide, this._hide.bind(this));
-			$modal.on(modalEvents.handleShow, this._show.bind(this));
-
-			// handlerProps.forEach(function(prop) {
-			// 	if (this[prop]) {
-			// 		$modal.on(modalEvents[prop], this[prop])
-			// 	}
-			// 	if (this.props[prop]) {
-			// 		$modal.on(modalEvents[prop], this.props[prop])
-			// 	}
-			// }.bind(this));
+			$modal.on(modalEvents.handleHide, this._hide);
+			$modal.on(modalEvents.handleShow, this._show);
 
 			$(document).on("keydown.modal",function(e){
 				if(e.which === 27) {
@@ -45,9 +36,7 @@ var ModalMixin = (function() {
 				}
 			}.bind(this));
 
-			$modal.on("click",".modal-backdrop",function(e){
-				this.hide();
-			}.bind(this));
+			$modal.on("click",".modal-backdrop",this.hide);
 
 			if(this.props.show) {
 				this._show();

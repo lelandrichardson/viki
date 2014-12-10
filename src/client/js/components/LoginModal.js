@@ -31,20 +31,22 @@ module.exports = React.createClass({
         return (
             <div className="modal">
                 <div className="modal-backdrop"></div>
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-sm">
                     <div className="modal-content">
                         <div className="modal-header">
                             {this.renderCloseButton()}
                             <b className="txt-large">Login</b>
                         </div>
                         <div className="modal-body">
-                            <input type="text" className="mb10"
+                            <input type="text" className="mb8"
+                                placeholder="Username"
                                 valueLink={this.linkState('username')} />
-                            <input type="password" className="mb10"
+                            <input type="password"
+                                placeholder="Password"
                                 valueLink={this.linkState('password')} />
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn" onClick={this.handleSubmit}>
+                            <button type="button" className="btn small block" onClick={this.handleSubmit}>
                                 Login
                             </button>
                         </div>

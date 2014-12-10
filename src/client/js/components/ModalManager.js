@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var AddItemModal = require('./AddItemModal')
+var LoginModal = require('./LoginModal')
 
 
 var ModalManager = React.createClass({
@@ -8,10 +9,15 @@ var ModalManager = React.createClass({
 	render: function() {
 		return (
 			<div className="modals">
+
 				<AddItemModal ref="modal"
 			        show={false}
-			        handleShow={this.handleShowModal.bind(this)}
-			        handleHide={this.handleHideModal.bind(this)} />
+			        handleShow={this.handleShowModal}
+			        handleHide={this.handleHideModal} />
+
+		        <LoginModal ref="login"
+		        	show={true} />
+		        	
 			</div>
 		);
 	},
