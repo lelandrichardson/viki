@@ -1,5 +1,6 @@
 var AuthConstants = require('../constants/AuthConstants.js');
 var Flux = require('react-flux');
+var $http = require('../util/$http');
 
 var AuthActions = Flux.createActions({
 
@@ -7,13 +8,17 @@ var AuthActions = Flux.createActions({
         return null;
     }],
 
-    setSelectedItem: [AuthConstants.SUB_ITEM_CLICK, function(item){
-        return item;
+    login: [AuthConstants.LOGIN, function(credentials){
+        return $http.post('/api/user/login', credentials);
     }],
 
-    addItem: [AuthConstants.ADD_ITEM_CLICK, function(item){
-        return item;
-    }]
+    register: [AuthConstants.REGISTER, function(credentials){
+        return credentials;
+    }],
+
+    logout: [AuthConstants.LOGOUT, function(credentials){
+        return credentials;
+    }],
     
 });
 

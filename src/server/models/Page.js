@@ -8,7 +8,7 @@ var ItemSchema = mongoose.model('Item').schema;
 
 var PageSchema = new VikiSchema({
 	
-	urlSlug: {
+	slug: {
 		type: String,
 		unique: true
 	},
@@ -23,7 +23,7 @@ var PageSchema = new VikiSchema({
 	
 	height: Number,
 
-	createdBy: {
+	creator: {
 		type: String,
 		ref: 'User'
 	}

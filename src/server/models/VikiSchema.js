@@ -9,7 +9,7 @@ module.exports = function(options) {
 			unique: true,
 			default: shortId.generate
 		},
-		dateUpdated: {
+		dateModified: {
 			type: Date,
 			default: Date.now
 		},

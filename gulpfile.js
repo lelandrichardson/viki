@@ -10,14 +10,14 @@ function swallowError (error) {
 
 gulp.task('browserify', function() {
     gulp.src('src/client/js/main.js')
-      .pipe(browserify({ transform: 'reactify', debug: true }).on('error',swallowError))
+      .pipe(browserify({ transform: 'reactify', debug: true }).on('error', swallowError))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('sass', function () {
     gulp.src(['src/client/sass/reset.scss','src/client/sass/*.scss'])
-        .pipe(sass({ style: 'compressed' }).on('error',swallowError))
+        .pipe(sass({ style: 'compressed' }).on('error', swallowError))
         .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));
 });

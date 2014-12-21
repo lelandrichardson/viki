@@ -5,8 +5,10 @@ var Page = mongoose.model('Page');
 var pages = express.Router();
 
 pages.get('/:id', function(req, res) {
+
 	var id = req.param('id');
-	Page.findById(id).populate('createdBy').lean().exec(function(err, page) {
+
+	Page.findById(id).populate('creator').lean().exec(function(err, page) {
 		if (err) {
 			res.error(404, "page not found");
 		} 
@@ -17,10 +19,27 @@ pages.get('/:id', function(req, res) {
 	});
 });
 
-pages.put('/', function(req, res) {
+pages.post('/:id', function(req, res) {
+
 	var page = new Page(req.body);
 
-	page.createdBy = req.user;
+	page.dateModified = Date.now();
+
+	page.save(function(err) {
+		if (err) {
+			return res.error(400, err);
+		}
+		res.success(page);
+	});
+
+});
+
+
+pages.put('/', function(req, res) {
+
+	var page = new Page(req.body);
+
+	page.creator = req.user;
 
 	page.save(function(err) {
 		if (err) {

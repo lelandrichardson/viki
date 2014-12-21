@@ -14,6 +14,8 @@ var SubItem = React.createClass({
 	},
 
 	render: function() {
+	//	var { item, onClick, ...passedProps } = this.props;
+
 		return (
 			<div>
 				<a onClick={this.itemClick}>{this.props.item.text}</a>

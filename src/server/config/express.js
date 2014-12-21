@@ -43,6 +43,12 @@ express.response.error = function(a, b, c) {
 		payload = b;
 	}
 
+	if (!payload && message && typeof message !== 'string' && 'message' in message) {
+		// assume message is an error object
+		payload = message;
+		message = message.message;
+	}
+
 	return this.json({
 		success: false,
 		code: code,
@@ -112,7 +118,7 @@ module.exports = function(db) {
 	app.use(methodOverride());
 
 	// CookieParser should be above session
-	// app.use(cookieParser());
+	app.use(cookieParser());
 
 	// Express MongoDB session storage
 	app.use(session({
@@ -151,6 +157,8 @@ module.exports = function(db) {
 		require(path.resolve(routePath))(app);
 	});
 
+
+	// hook up our API routes
 	app.use('/api', require('../api/router'));
 
 	// Assume 'not found' in the error msgs is a 404. 
@@ -164,6 +172,7 @@ module.exports = function(db) {
 		console.error(err.stack);
 
 		// Error page
+		//TODO: make an error pge
 		res.status(500).render('500', {
 			error: err.stack
 		});

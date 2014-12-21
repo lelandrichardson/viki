@@ -2,6 +2,7 @@
 var React = require('react');
 
 var ModalMixin = (function() {
+	
 	var handlerProps = ['handleShow', 'handleHide'];
 	
 	var modalEvents = {
@@ -41,7 +42,6 @@ var ModalMixin = (function() {
 			if(this.props.show) {
 				this._show();
 			}
-
 		},
 
 		componentWillUnmount: function() {

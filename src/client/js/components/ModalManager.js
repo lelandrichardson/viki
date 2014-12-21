@@ -1,10 +1,21 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AddItemModal = require('./AddItemModal')
-var LoginModal = require('./LoginModal')
+var AddItemModal = require('./AddItemModal');
+var LoginModal = require('./LoginModal');
+var SessionStore = require('../stores/SessionStore');
 
 
 var ModalManager = React.createClass({
+
+	mixins: [
+		SessionStore.mixin()
+	],
+
+	getStateFromStores: function() {
+        return {
+            isLoggedIn: SessionStore.isLoggedIn()
+        };
+    },
 
 	render: function() {
 		return (
@@ -16,7 +27,7 @@ var ModalManager = React.createClass({
 			        handleHide={this.handleHideModal} />
 
 		        <LoginModal ref="login"
-		        	show={true} />
+		        	show={!this.state.isLoggedIn} />
 		        	
 			</div>
 		);

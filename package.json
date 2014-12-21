@@ -10,9 +10,9 @@
     "envify": "^1.2.1",
     "es6-promise": "^1.0.0",
     "es6-shim": "^0.21.1",
-    "react": "~0.11.2",
+    "react": "~0.12",
     "react-flux":"~0.0.14",
-    "react-font-awesome":"*",
+    
 
     "express": "latest",
     "express-session": "~1.9.1",
@@ -44,7 +44,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server/server.js"
+    "start": "node src/server/server.js",
+    "dev": "nodemon src/server/server.js"
   },
   "author": "Leland Richardson",
   "license": "MIT",

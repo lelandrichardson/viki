@@ -24,7 +24,7 @@ var UserSchema = new VikiSchema({
 		type: String,
 		default: '',
 		select: false,
-		validate: [validatePassword, 'Password should be longer']
+		validate: [validatePassword, 'Password must be at least 6 characters']
 	},
 	salt: {
 		type: String,

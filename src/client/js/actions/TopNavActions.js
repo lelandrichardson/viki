@@ -3,15 +3,15 @@ var Flux = require('react-flux');
 
 var TopNavActions = Flux.createActions({
 
-    openAddNewItemModal: [TopNavConstants.OPEN_NEW_ITEM_WINDOW,function(){
+    openAddNewItemModal: [TopNavConstants.OPEN_NEW_ITEM_WINDOW, function(){
         return null;
     }],
 
-    setSelectedItem: [TopNavConstants.SUB_ITEM_CLICK,function(item){
+    setSelectedItem: [TopNavConstants.SUB_ITEM_CLICK, function(item){
         return item;
     }],
 
-    addItem: [TopNavConstants.ADD_ITEM_CLICK,function(item){
+    addItem: [TopNavConstants.ADD_ITEM_CLICK, function(item){
         return item;
     }]
     
