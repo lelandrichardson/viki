@@ -69,7 +69,7 @@ body {
     box-shadow: '';
     color: #262626; }
   .btn:active, button:active {
-    background-color: #d3d3d3;
+    background-color: lightgray;
     background-image: '';
     color: #262626;
     box-shadow: 0 0 0 1px transparent inset, 0 1px 4px 0 rgba(39, 41, 43, 0.15) inset; }
@@ -77,9 +77,9 @@ body {
     background-color: #428bca;
     color: #fefefe; }
     .btn.primary:hover, button.primary:hover {
-      background-color: #5699d0; }
+      background-color: #5697d0; }
     .btn.primary:active, button.primary:active {
-      background-color: #3580bd; }
+      background-color: #357ebd; }
   .btn.inverted, button.inverted {
     background-color: #222;
     color: #fefefe; }
@@ -91,16 +91,16 @@ body {
     background-color: #d9534f;
     color: #fefefe; }
     .btn.danger:hover, button.danger:hover {
-      background-color: #de6664; }
+      background-color: #de6764; }
     .btn.danger:active, button.danger:active {
-      background-color: #d43d3a; }
+      background-color: #d43f3a; }
   .btn.success, button.success {
     background-color: #5cb85c;
     color: #fefefe; }
     .btn.success:hover, button.success:hover {
-      background-color: #6fc06e; }
+      background-color: #6ec06e; }
     .btn.success:active, button.success:active {
-      background-color: #4eae4c; }
+      background-color: #4cae4c; }
   .btn.mini, button.mini {
     font-size: 0.7em; }
   .btn.small, button.small {
@@ -139,15 +139,15 @@ input[type=text], input[type=password], textarea {
 input.error, textarea.error {
   border-color: #d9534f; }
   input.error:hover, input.error:focus, textarea.error:hover, textarea.error:focus {
-    border-color: #c92e2c; }
+    border-color: #c9302c; }
 input.info, textarea.info {
   border-color: #5bc0de; }
   input.info:hover, input.info:focus, textarea.info:hover, textarea.info:focus {
-    border-color: #31b2d5; }
+    border-color: #31b0d5; }
 input.success, textarea.success {
   border-color: #5cb85c; }
   input.success:hover, input.success:focus, textarea.success:hover, textarea.success:focus {
-    border-color: #469d44; }
+    border-color: #449d44; }
 input.warning, textarea.warning {
   border-color: #f0ad4e; }
   input.warning:hover, input.warning:focus, textarea.warning:hover, textarea.warning:focus {
@@ -375,25 +375,30 @@ textarea {
   .modal-dialog {
     width: 600px;
     margin: 54px auto; }
+
   .modal-lg {
     width: auto;
     margin: 10px;
-    margin-top: 54px; } }
+    margin-top: 54px; }
+ }
 
 @media (min-width: 320px) {
   .modal-sm {
     width: 300px;
-    margin: 54px auto; } }
+    margin: 54px auto; }
+ }
 
 @media (min-width: 620px) {
   .modal-md {
     width: 600px;
-    margin: 54px auto; } }
+    margin: 54px auto; }
+ }
 
 @media (min-width: 920px) {
   .modal-lg {
     width: 900px;
-    margin: 54px auto; } }
+    margin: 54px auto; }
+ }
 
 .top-nav {
   padding: 0.8em 0.4em;

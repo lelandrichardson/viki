@@ -1,8 +1,7 @@
 /** @jsx React.DOM */
+require('es6-shim');
 var VikiApp = require('./components/VikiApp');
 var React = require('react');
-require('es6-shim');
 
-React.renderComponent(
-	<VikiApp />,
-	document.getElementById('main'));
+
+React.render(<VikiApp />, document.getElementById('main'));

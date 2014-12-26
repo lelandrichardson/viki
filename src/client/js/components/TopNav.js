@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Icon = require('react-font-awesome').Icon;
+var Icon = require('./Icon').Icon;
 var TopNavActions = require('../actions/TopNavActions');
+var AuthActions = require('../actions/AuthActions');
 var AppEvents = require('../AppEvents')
 var SessionStore = require('../stores/SessionStore');
 
@@ -16,8 +17,15 @@ var TopNav = React.createClass({
 	},
 
 	addClick: function(){
-		console.log("addClick!");
 		AppEvents.emit("ADD_NEW_ITEM_CLICK");
+	},
+
+	logout: function() {
+		AuthActions.logout();
+	},
+
+	login: function() {
+		AuthActions.loginModalOpen();
 	},
 
 	render: function() {
@@ -37,6 +45,16 @@ var TopNav = React.createClass({
 					<li className="inline right">
 						<a className="nav-btn" onClick={this.addClick}>
 							<Icon type="plus" />
+						</a>
+					</li>
+					<li className="inline right">
+						<a className="nav-btn" onClick={this.logout}>
+							Logout
+						</a>
+					</li>
+					<li className="inline right">
+						<a className="nav-btn" onClick={this.login}>
+							Login
 						</a>
 					</li>
 				</ul>

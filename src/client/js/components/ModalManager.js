@@ -1,48 +1,50 @@
-/** @jsx React.DOM */
 var React = require('react');
+var TransitionGroup = React.addons.TransitionGroup;
+var ModalStore = require('../stores/ModalStore');
+
 var AddItemModal = require('./AddItemModal');
 var LoginModal = require('./LoginModal');
-var SessionStore = require('../stores/SessionStore');
 
+
+
+
+var MODALS = {
+
+	"LOGIN": function() {
+		return <LoginModal key="LOGIN" modalId="LOGIN" size="small" />
+	},
+
+	"ADD_ITEM": function() {
+		return <AddItemModal key="ADD_ITEM" modalId="ADD_ITEM" />
+	}
+
+};
 
 var ModalManager = React.createClass({
 
 	mixins: [
-		SessionStore.mixin()
+		ModalStore.mixin()
 	],
 
 	getStateFromStores: function() {
         return {
-            isLoggedIn: SessionStore.isLoggedIn()
+            activeModals: ModalStore.getActiveModals()
         };
     },
 
 	render: function() {
+
+		var modals = this.state.activeModals.map(function(modal){
+			var renderFn = MODALS[modal];
+			return renderFn && renderFn.call(this);
+		}, this);
+
 		return (
-			<div className="modals">
-
-				<AddItemModal ref="modal"
-			        show={false}
-			        handleShow={this.handleShowModal}
-			        handleHide={this.handleHideModal} />
-
-		        <LoginModal ref="login"
-		        	show={!this.state.isLoggedIn} />
-		        	
-			</div>
+			<TransitionGroup component="div" className="modals">
+				{modals}
+        	</TransitionGroup>
 		);
-	},
-
-	handleShowModal: function() {
-		console.log("inside handleshowmodal from modalmanager");
-		//this.refs.modal.show()
-	},
-
-	handleHideModal: function() {
-		//this.refs.modal.hide()
-		console.log("inside handlehidemodal from mdoalmanager")
 	}
-
 });
 
 module.exports = ModalManager;

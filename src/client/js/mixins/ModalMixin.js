@@ -1,76 +1,95 @@
 /** @jsx React.DOM */
 var React = require('react');
+require('react/addons')
+var AppActions = require('../actions/AppActions');
+
+var cx = React.addons.classSet;
+var TransitionGroup = React.addons.TransitionGroup;
+
+var ANIMATION_DURATION = 300;
 
 var ModalMixin = (function() {
-	
-	var handlerProps = ['handleShow', 'handleHide'];
-	
-	var modalEvents = {
-		handleShow: 'show.modal',
-		handleHide: 'hide.modal',
-	};
-	
+
 	return {
 
 		propTypes: {
-			handleShow: React.PropTypes.func, 
-			handleHide: React.PropTypes.func,
+			beforeHide: React.PropTypes.func,
+			afterShown: React.PropTypes.func,
+			onShow: React.PropTypes.func,
 			backdrop: React.PropTypes.bool,
-			show: React.PropTypes.bool
+			size: React.PropTypes.oneOf(["small", "medium", "large"])
 		},
 
 		getDefaultProps: function() {
 			return {
-				show: true
+				backdrop: true,
+				size: "medium"
+			};
+		},
+
+		getInitialState: function() {
+			return {
+				shown: false,
+				modalDisplay: "none"
+			};
+		},
+
+		componentWillEnter: function(callback){
+			this.setState({
+				modalDisplay: "block"
+			});
+			setTimeout(callback, 0);
+		},
+
+		componentDidEnter: function(){
+			this.setState({
+				shown: true
+			});
+
+			if (this.props.onShow){
+				this.props.onShow(this);
+			}
+
+			if (this.onShow) {
+				this.onShow(this);
+			}
+
+			if (this.props.afterShown || this.afterShown) {
+				setTimeout(function(){
+					this.props.afterShown(this);
+					this.afterShown(this);
+				}, ANIMATION_DURATION);
 			}
 		},
 
-		componentDidMount: function() {
-			var $modal = $(this.getDOMNode());
+		componentWillLeave: function(callback) {
+			this.setState({
+				shown: false
+			});
 
-			$modal.on(modalEvents.handleHide, this._hide);
-			$modal.on(modalEvents.handleShow, this._show);
-
-			$(document).on("keydown.modal",function(e){
-				if(e.which === 27) {
-					this.hide();
-				}
-			}.bind(this));
-
-			$modal.on("click",".modal-backdrop",this.hide);
-
-			if(this.props.show) {
-				this._show();
-			}
-		},
-
-		componentWillUnmount: function() {
-			$(this.getDOMNode()).off('.modal');
-			$(document).off(".modal");
-		},
-
-		_hide: function(){
-			var $modal = $(this.getDOMNode());
-			$modal.removeClass("shown");
-			setTimeout(function(){
-				$modal.hide();
-			},300);
-		},
-
-		_show: function(){
-			var $modal = $(this.getDOMNode());
-			$modal.show();
-			setTimeout(function(){
-				$modal.addClass("shown");
-			},0);
+			setTimeout(callback, ANIMATION_DURATION);
 		},
 
 		hide: function() {
-			$(this.getDOMNode()).trigger('hide')
-		},
+			var hide = true;
 
-		show: function() {
-			$(this.getDOMNode()).trigger('show')
+			if (this.props.beforeHide) {
+				hide = this.props.beforeHide(this);
+			}
+
+			if (hide === false) {
+				return; // hide was canceled
+			}
+
+			if (this.beforeHide) {
+				hide = this.beforeHide(this);
+			}
+
+			if (hide === false) {
+				return; // hide was canceled
+			}
+
+			AppActions.hideModal(this.props.modalId);
 		},
 
 		renderCloseButton: function() {
@@ -81,8 +100,35 @@ var ModalMixin = (function() {
 					onClick={this.hide}
 					dangerouslySetInnerHTML={{__html: '&times'}} />
 			);
-		}
+		},
+
+		render: function() {
+
+			var modalClassNames = cx({
+				modal: true,
+				shown: this.state.shown
+			});
+
+			var dialogClassNames = cx({
+				"modal-dialog": true,
+				"modal-sm": this.props.size === "small",
+				"modal-md": this.props.size === "medium",
+				"modal-lg": this.props.size === "large"
+			});
+
+			var backdrop = this.props.backdrop && <div ref="backdrop" className="modal-backdrop" onClick={this.hide}></div>;
+
+	        return (
+	        	<div ref="modal" className={modalClassNames} style={{ display: this.state.modalDisplay }}>
+	                {backdrop}
+	                <div ref="dialog" className={dialogClassNames}>
+	                	{this.renderModal()}
+	                </div>
+	            </div>
+	        );
+	    },
 	}
+
 }());
 
 module.exports = ModalMixin;

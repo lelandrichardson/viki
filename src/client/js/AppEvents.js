@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
-var merge = require('react/lib/merge');
+require('es6-shim');
 
-var AppEvents = merge(EventEmitter.prototype, {
+var AppEvents = Object.assign(EventEmitter.prototype, {
 	// handleViewAction: function(action) {
 	// 	console.log(action);
 	// 	this.dispatch({

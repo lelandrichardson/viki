@@ -20,7 +20,7 @@ var AddItemModal = React.createClass({
         };
     },
 
-    render: function() {
+    renderModal: function() {
         
         return (
             <div className="modal">

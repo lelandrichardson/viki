@@ -34,7 +34,7 @@ var SessionStore = Flux.createStore({
         });
     }],
 
-    [AuthConstants.LOGOUT_SUCCESS, function(user){
+    [AuthConstants.LOGOUT_SUCCESS, function(){
         this.setState({
             isLoggedIn: false,
             user: null
