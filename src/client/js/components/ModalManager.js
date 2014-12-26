@@ -5,9 +5,6 @@ var ModalStore = require('../stores/ModalStore');
 var AddItemModal = require('./AddItemModal');
 var LoginModal = require('./LoginModal');
 
-
-
-
 var MODALS = {
 
 	"LOGIN": function() {
@@ -15,7 +12,7 @@ var MODALS = {
 	},
 
 	"ADD_ITEM": function() {
-		return <AddItemModal key="ADD_ITEM" modalId="ADD_ITEM" />
+		return <AddItemModal key="ADD_ITEM" modalId="ADD_ITEM" size="medium" />
 	}
 
 };

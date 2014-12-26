@@ -1,8 +1,10 @@
 var Flux = require('react-flux');
-var AuthConstants = require('../constants/AuthConstants');
-var AppConstants = require('../constants/AppConstants');
+var AuthConstants = require('../actions/AuthActions').Constants;
+var AppConstants = require('../actions/AppActions').Constants;
+var ItemConstants = require('../actions/ItemActions').Constants;
+var TopNavConstants = require('../actions/TopNavActions').Constants;
 
-var SessionStore = Flux.createStore({
+var ModalStore = Flux.createStore({
 
     getInitialState: function() {
         return {
@@ -28,12 +30,6 @@ var SessionStore = Flux.createStore({
         });
     }],
 
-    [AuthConstants.LOGIN_MODAL_OPEN, function(){
-        this.setState({
-            LOGIN: true
-        });
-    }],
-
     [AuthConstants.REGISTER_SUCCESS, function(user){
         this.setState({
             REGISTER: false
@@ -50,8 +46,20 @@ var SessionStore = Flux.createStore({
         var obj = {};
         obj[modalId] = false;
         this.setState(obj);
-    }]
+    }],
+
+    [AppConstants.MODAL_SHOW_SUCCESS, function(modalId){
+        var obj = {};
+        obj[modalId] = true;
+        this.setState(obj);
+    }],
+
+    [ItemConstants.CREATE_SUCCESS, function(modalId){
+        this.setState({
+            ADD_ITEM: false
+        });
+    }],
 
 ]);
 
-module.exports = SessionStore;
+module.exports = ModalStore;

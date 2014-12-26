@@ -3,6 +3,8 @@ var mongoose = require('mongoose'),
 
 var ItemSchema = new VikiSchema({
 
+	text: String,
+
 	image: {
 		type: String
 	},

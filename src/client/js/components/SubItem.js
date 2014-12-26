@@ -9,13 +9,10 @@ var SubItem = React.createClass({
 	},
 
 	itemClick: function(){
-		console.log("click!");
 		TopNavActions.setSelectedItem(this.props.item);
 	},
 
 	render: function() {
-	//	var { item, onClick, ...passedProps } = this.props;
-
 		return (
 			<div>
 				<a onClick={this.itemClick}>{this.props.item.text}</a>

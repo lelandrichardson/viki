@@ -1,22 +1,16 @@
 var Flux = require('react-flux');
 var TopNavConstants = require('../actions/TopNavActions').Constants;
 var ItemConstants = require('../actions/ItemActions').Constants;
+var PageConstants = require('../actions/PageActions').Constants;
 
-var ItemStore = Flux.createStore({
+var PageStore = Flux.createStore({
 
     getInitialState: function() {
         return {
-            items: [],
-            selected: null
+            current: null,
+            parent: null,
+            history: []
         };
-    },
-
-    getSelectedItem: function(){
-        return this.state.get('selected');
-    },
-
-    getSubItems: function() {
-        return this.state.get('items');
     }
 
 },[
@@ -41,4 +35,4 @@ var ItemStore = Flux.createStore({
 
 ]);
 
-module.exports = ItemStore;
+module.exports = PageStore;

@@ -4,7 +4,6 @@ require('react/addons')
 var AppActions = require('../actions/AppActions');
 
 var cx = React.addons.classSet;
-var TransitionGroup = React.addons.TransitionGroup;
 
 var ANIMATION_DURATION = 300;
 

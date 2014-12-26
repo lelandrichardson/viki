@@ -1,5 +1,5 @@
 var Flux = require('react-flux');
-var AuthConstants = require('../constants/AuthConstants');
+var AuthConstants = require('../actions/AuthActions').Constants;
 
 var SessionStore = Flux.createStore({
 

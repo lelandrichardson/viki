@@ -1,18 +1,19 @@
 /** @jsx React.DOM */
 var React = require('react');
+require('react/addons');
+
 var ModalMixin = require('../mixins/ModalMixin');
-var Eventable = require('../mixins/Eventable');
+
 var TopNavActions = require('../actions/TopNavActions');
+var AppActions = require('../actions/AppActions');
+var ItemActions = require('../actions/ItemActions');
 
 var AddItemModal = React.createClass({
 
-    mixins: [ModalMixin, Eventable],
-
-    subscriptions: {
-        "ADD_NEW_ITEM_CLICK": function(e){
-            this.show();
-        }
-    },
+    mixins: [
+        ModalMixin, 
+        React.addons.LinkedStateMixin
+    ],
 
     getInitialState: function() {
         return {
@@ -20,48 +21,34 @@ var AddItemModal = React.createClass({
         };
     },
 
+    onShow: function() {
+        this.refs.text.getDOMNode().focus();
+    },
+
+    handleSubmit: function(e){
+        ItemActions.create({ text: this.state.text });
+        this.setState({ text: '' });
+        e.preventDefault();
+    },
+
     renderModal: function() {
-        
         return (
-            <div className="modal">
-                <div className="modal-backdrop"></div>
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            {this.renderCloseButton()}
-                            <b className="txt-large">Add Item</b>
-                        </div>
-                        <div className="modal-body">
-                            <input 
-                                type="text" 
-                                onChange={this.onTextChange}
-                                value={this.state.text} />
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn" onClick={this.handleItemAdded}>
-                                Add
-                            </button>
-                        </div>
-                    </div>
+            <form className="modal-content" onSubmit={this.handleSubmit}>
+                <div className="modal-header">
+                    {this.renderCloseButton()}
+                    <b className="txt-large">Add Item</b>
                 </div>
-            </div>
+                <div className="modal-body">
+                    <input type="text" ref="text" valueLink={this.linkState('text')} />
+                </div>
+                <div className="modal-footer">
+                    <button type="submit" className="btn" onClick={this.handleSubmit}>
+                        Add
+                    </button>
+                </div>
+            </form>
         );
-    },
-
-    onTextChange: function(/*object*/ event) {
-        this.setState({
-            text: event.target.value
-        });
-    },
-
-    handleItemAdded: function(){
-        console.log("in handleItemAdded");
-        TopNavActions.addItem({ text: this.state.text });
-        this.setState({text: ''});
-        this.hide();
-
     }
-
 });
 
 module.exports = AddItemModal;

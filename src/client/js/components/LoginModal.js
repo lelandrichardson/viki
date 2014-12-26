@@ -7,19 +7,12 @@ var SessionStore = require('../stores/SessionStore');
 
 require('react/addons');
 
-module.exports = React.createClass({
+var LoginModal = React.createClass({
 
     mixins: [
-        ModalMixin, 
-        Eventable, 
+        ModalMixin,
         React.addons.LinkedStateMixin
     ],
-
-    subscriptions: {
-        "USER_LOGIN": function(e){
-            this.show();
-        }
-    },
 
     getInitialState: function() {
         return {
@@ -30,6 +23,15 @@ module.exports = React.createClass({
 
     onShow: function() {
         this.refs.username.getDOMNode().focus();
+    },
+
+
+    handleSubmit: function(e){
+        AuthActions.login({
+            username: this.state.username,
+            password: this.state.password
+        });
+        e.preventDefault();
     },
 
     renderModal: function() {
@@ -54,14 +56,7 @@ module.exports = React.createClass({
                 </div>
             </form>
         );
-    },
-
-    handleSubmit: function(e){
-        AuthActions.login({
-            username: this.state.username,
-            password: this.state.password
-        });
-        e.preventDefault();
     }
-
 });
+
+module.exports = LoginModal;

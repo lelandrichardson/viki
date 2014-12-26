@@ -1,14 +1,18 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Icon = require('./Icon').Icon;
+
 var TopNavActions = require('../actions/TopNavActions');
 var AuthActions = require('../actions/AuthActions');
-var AppEvents = require('../AppEvents')
+var AppActions = require('../actions/AppActions');
+
 var SessionStore = require('../stores/SessionStore');
 
 var TopNav = React.createClass({
 
-	mixins: [SessionStore.mixin()],
+	mixins: [
+		SessionStore.mixin()
+	],
 
 	getStateFromStores: function() {
 		return {
@@ -17,7 +21,7 @@ var TopNav = React.createClass({
 	},
 
 	addClick: function(){
-		AppEvents.emit("ADD_NEW_ITEM_CLICK");
+		AppActions.showModal("ADD_ITEM");
 	},
 
 	logout: function() {
@@ -25,7 +29,7 @@ var TopNav = React.createClass({
 	},
 
 	login: function() {
-		AuthActions.loginModalOpen();
+		AppActions.showModal("LOGIN");
 	},
 
 	render: function() {
@@ -60,9 +64,7 @@ var TopNav = React.createClass({
 				</ul>
 			</div>
 		);
-		
 	}
-
 });
 
 module.exports = TopNav;
