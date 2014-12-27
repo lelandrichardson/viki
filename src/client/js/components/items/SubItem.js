@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var TopNavActions = require('../actions/TopNavActions');
+var TopNavActions = require('../../actions/TopNavActions');
 
 var SubItem = React.createClass({
 

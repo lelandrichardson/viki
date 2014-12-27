@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 var React = require('react');
-var ModalMixin = require('../mixins/ModalMixin');
-var Eventable = require('../mixins/Eventable');
-var AuthActions = require('../actions/AuthActions');
-var SessionStore = require('../stores/SessionStore');
+var ModalMixin = require('../../mixins/ModalMixin');
+var Eventable = require('../../mixins/Eventable');
+var AuthActions = require('../../actions/AuthActions');
+var SessionStore = require('../../stores/SessionStore');
 
 require('react/addons');
 

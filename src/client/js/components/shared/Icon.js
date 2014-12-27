@@ -35,7 +35,7 @@ var IconStack = React.createClass({
     render: function () {
         var classes = {
             'fa-stack': true
-        }
+        };
         classes['fa-' + this.props.size] = this.props.size;
 
         var className = cs(classes) + " " + (this.props.className || '');
@@ -49,7 +49,7 @@ var Ul = React.createClass({
     render: function () {
         var classes = {
             'fa-ul': true
-        }
+        };
         var className = cs(classes) + " " + (this.props.className || '');
 
         return this.transferPropsTo(

@@ -1,9 +1,9 @@
 var React = require('react');
 var TransitionGroup = React.addons.TransitionGroup;
-var ModalStore = require('../stores/ModalStore');
+var ModalStore = require('../../stores/ModalStore');
 
-var AddItemModal = require('./AddItemModal');
-var LoginModal = require('./LoginModal');
+var AddItemModal = require('./../modals/AddItemModal');
+var LoginModal = require('./../modals/LoginModal');
 
 var MODALS = {
 

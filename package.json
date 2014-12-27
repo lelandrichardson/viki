@@ -33,6 +33,7 @@
     "passport-local": "~1.0.0",
     "react": "^0.12.0",
     "react-flux": "latest",
+    "react-router": "^0.11.6",
     "shortid": "~2.1.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",

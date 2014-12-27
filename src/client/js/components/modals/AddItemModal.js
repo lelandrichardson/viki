@@ -2,21 +2,25 @@
 var React = require('react');
 require('react/addons');
 
-var ModalMixin = require('../mixins/ModalMixin');
+var PageStore = require('../../stores/PageStore');
 
-var TopNavActions = require('../actions/TopNavActions');
-var AppActions = require('../actions/AppActions');
-var ItemActions = require('../actions/ItemActions');
+var ModalMixin = require('../../mixins/ModalMixin');
+
+var TopNavActions = require('../../actions/TopNavActions');
+var AppActions = require('../../actions/AppActions');
+var ItemActions = require('../../actions/ItemActions');
 
 var AddItemModal = React.createClass({
 
     mixins: [
-        ModalMixin, 
-        React.addons.LinkedStateMixin
+        ModalMixin,
+        React.addons.LinkedStateMixin,
+        PageStore.mixin()
     ],
 
     getInitialState: function() {
         return {
+            //pageId: PageStore.get('current').id,
             text: this.props.text || ''
         };
     },
@@ -26,7 +30,10 @@ var AddItemModal = React.createClass({
     },
 
     handleSubmit: function(e){
-        ItemActions.create({ text: this.state.text });
+        ItemActions.create({
+            //pageId:
+            text: this.state.text
+        });
         this.setState({ text: '' });
         e.preventDefault();
     },

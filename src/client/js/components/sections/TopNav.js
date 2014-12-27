@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Icon = require('./Icon').Icon;
+var Icon = require('./../shared/Icon').Icon;
 
-var TopNavActions = require('../actions/TopNavActions');
-var AuthActions = require('../actions/AuthActions');
-var AppActions = require('../actions/AppActions');
+var TopNavActions = require('../../actions/TopNavActions');
+var AuthActions = require('../../actions/AuthActions');
+var AppActions = require('../../actions/AppActions');
 
-var SessionStore = require('../stores/SessionStore');
+var SessionStore = require('../../stores/SessionStore');
 
 var TopNav = React.createClass({
 
