@@ -5,7 +5,7 @@ var Constants = Flux.createConstants([
     "LOGIN",
     "LOGOUT",
     "REGISTER"
-]);
+], "AUTH");
 
 var AuthActions = Flux.createActions({
 

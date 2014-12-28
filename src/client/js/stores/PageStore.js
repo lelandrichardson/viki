@@ -13,6 +13,10 @@ function pushOntoQueue ( store, next ) {
     });
 }
 
+function isCurrentPage ( page ) {
+
+}
+
 var PageStore = Flux.createStore({
 
     getInitialState: function () {
@@ -21,17 +25,52 @@ var PageStore = Flux.createStore({
             parent: null,
             history: []
         };
+    },
+
+    isCurrentPage: function ( page ) {
+        var current = this.get('current');
+        return current && page._id === current._id;
+    },
+
+    pushOntoQueue: function ( next ) {
+        var history = this.get('history');
+        var current = this.get('current');
+        history.push(current);
+        this.setState({
+            current: next,
+            history: history
+        });
     }
 
 }, [
 
     // top nav add item button has been clicked
     [PageConstants.CREATE_SUCCESS, function ( page ) {
-        pushOntoQueue(this, item);
+        this.pushOntoQueue(page);
+    }],
+
+    [PageConstants.UPDATE_SUCCESS, function ( page ) {
+
+        // only update the current page if it's the page that's been updated
+        if (!this.isCurrentPage(page)) {
+            return;
+        }
+
+        this.setState({
+            current: page
+        });
     }],
 
     [PageConstants.GET_SUCCESS, function ( page ) {
-        pushOntoQueue(this, page);
+
+        // only add current page to history if it's different than the new page
+        if (!this.isCurrentPage(page)) {
+            this.pushOntoQueue(page);
+        } else {
+            this.setState({
+                current: page
+            });
+        }
     }],
 
     // a sub item of the main displayed item has been clicked

@@ -1,15 +1,22 @@
 var React = require('react');
 require('react/addons');
 
-var PageStore = require('../../stores/PageStore');
-
 var ModalMixin = require('../../mixins/ModalMixin');
 
+// Stores
+var PageStore = require('../../stores/PageStore');
+var ItemStore = require('../../stores/ItemStore');
+
+// Actions
 var TopNavActions = require('../../actions/TopNavActions');
 var AppActions = require('../../actions/AppActions');
 var ItemActions = require('../../actions/ItemActions');
 
 var AddItemModal = React.createClass({
+
+    _emptyState: {
+        text: ''
+    },
 
     mixins: [
         ModalMixin,
@@ -17,16 +24,19 @@ var AddItemModal = React.createClass({
         PageStore.mixin()
     ],
 
-    getStateFromStores: function () {
-        var current = PageStore.get('current');
+    getDefaultProps: function () {
         return {
-            pageId: current ? current.id : null
+            editing: false
         };
     },
 
     getInitialState: function () {
+        return Object.assign({}, this._emptyState, this.props.item || {});
+    },
+
+    getStateFromStores: function () {
         return {
-            text: this.props.text || ''
+            pageId: PageStore.get('current')._id
         };
     },
 
@@ -34,30 +44,52 @@ var AddItemModal = React.createClass({
         this.refs.text.getDOMNode().focus();
     },
 
-    handleSubmit: function ( e ) {
+    handleAdd: function ( e ) {
         ItemActions.create({
-            //pageId:
+            pageId: this.state.pageId,
             text: this.state.text
         });
-        this.setState({text: ''});
+        this.setState(this._emptyState);
+        e.preventDefault();
+    },
+
+    handleSave: function ( e ) {
+        ItemActions.update(this.props.item._id, {
+            pageId: this.state.pageId,
+            text: this.state.text
+        });
         e.preventDefault();
     },
 
     renderModal: function () {
+
+        var title = this.props.editing ? "Edit Item" : "Add Item";
+
+        var submitAction = this.props.editing ? this.handleSave : this.handleAdd;
+
+        var buttons = this.props.editing ? (
+            <button type="submit" className="btn" onClick={submitAction}>
+                Save
+            </button>
+        ) : (
+            <button type="submit" className="btn" onClick={submitAction}>
+                Add
+            </button>
+        );
+
         return (
-            <form className="modal-content" onSubmit={this.handleSubmit}>
+            <form className="modal-content" onSubmit={submitAction}>
                 <div className="modal-header">
                     {this.renderCloseButton()}
-                    <b className="txt-large">Add Item</b>
+                    <b className="txt-large">{title}</b>
                 </div>
                 <div className="modal-body">
+                    <div className="mb20">Page Id: {this.state.pageId}</div>
+
+                    <div>Text:</div>
                     <input type="text" ref="text" valueLink={this.linkState('text')} />
                 </div>
-                <div className="modal-footer">
-                    <button type="submit" className="btn" onClick={this.handleSubmit}>
-                        Add
-                    </button>
-                </div>
+                <div className="modal-footer">{buttons}</div>
             </form>
         );
     }

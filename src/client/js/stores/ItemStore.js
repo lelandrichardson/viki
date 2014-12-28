@@ -1,22 +1,33 @@
 var Flux = require('react-flux');
-var TopNavConstants = require('../actions/TopNavActions').Constants;
 var ItemConstants = require('../actions/ItemActions').Constants;
+var PageConstants = require('../actions/PageActions').Constants;
+
+function findByIdAndReplace ( array, replacement ) {
+    var length = array.length,
+        item,
+        i;
+
+    for (i = 0; i < length; i++) {
+        item = array[i];
+        if (item._id === replacement._id) {
+            array.splice(i, 1, replacement);
+            break;
+        }
+    }
+
+    return array;
+}
 
 var ItemStore = Flux.createStore({
 
     getInitialState: function () {
         return {
-            items: [],
-            selected: null
+            items: []
         };
     },
 
-    getSelectedItem: function () {
-        return this.state.get('selected');
-    },
-
-    getSubItems: function () {
-        return this.state.get('items');
+    getItems: function () {
+        return this.get('items');
     }
 
 }, [
@@ -27,16 +38,24 @@ var ItemStore = Flux.createStore({
         items.push(item);
 
         this.setState({
-            items: items,
-            selected: item
+            items: items
         });
     }],
 
-    // a sub item of the main displayed item has been clicked
-    [TopNavConstants.SET_SELECTED_ITEM_SUCCESS, function ( item ) {
+    [ItemConstants.UPDATE_SUCCESS, function ( item ) {
+        var items = this.get('items');
+
+        var replaced = findByIdAndReplace(items, item);
+
         this.setState({
-            selected: item
+            items: replaced
         });
+    }],
+
+    [PageConstants.GET_SUCCESS, function ( page ) {
+        this.setState({
+            items: page.items
+        })
     }]
 
 ]);

@@ -1,5 +1,6 @@
 var React = require('react');
 var TopNavActions = require('../../actions/TopNavActions');
+var AppActions = require('../../actions/AppActions');
 
 var SubItem = React.createClass({
 
@@ -8,13 +9,13 @@ var SubItem = React.createClass({
     },
 
     itemClick: function () {
-        TopNavActions.setSelectedItem(this.props.item);
+        AppActions.showModal("EDIT_ITEM", this.props.item);
     },
 
     render: function () {
         return (
             <div>
-                <a onClick={this.itemClick}>{this.props.item.text}</a>
+                <a className="text-large mb10" onClick={this.itemClick}>{this.props.item.text}</a>
             </div>
         );
     }

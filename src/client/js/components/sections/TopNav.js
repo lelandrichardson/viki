@@ -24,7 +24,7 @@ var TopNav = React.createClass({
     },
 
     cogClick: function () {
-        AppActions.showModal("")
+        AppActions.showModal("EDIT_PAGE");
     },
 
     logout: function () {

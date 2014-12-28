@@ -38,7 +38,7 @@ var PageNotFound = React.createClass({
 
         return (
             <div className="center">
-                <h3 className="text-large mb20">Page Not Found</h3>
+                <h3 className="txt-large mb20">Page Not Found</h3>
 				{actions}
             </div>
         );

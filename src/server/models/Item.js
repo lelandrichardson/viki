@@ -3,6 +3,8 @@ var mongoose = require('mongoose'),
 
 var ItemSchema = new VikiSchema({
 
+    pageId: String,
+
 	text: String,
 
 	image: {
@@ -16,7 +18,9 @@ var ItemSchema = new VikiSchema({
 	creator: {
 		type: String,
 		ref: 'User'
-	}
+    },
+
+    properties: {}
 });
 
 mongoose.model('Item', ItemSchema);

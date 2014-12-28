@@ -2,13 +2,11 @@ var mongoose = require('mongoose'),
 	shortId = require('shortid'),
 	VikiSchema = require('./VikiSchema');
 
-require('./Item');
-
-var ItemSchema = mongoose.model('Item').schema;
-
 var PageSchema = new VikiSchema({
 
     title: String,
+
+    text: String,
 	
 	slug: {
 		type: String,
@@ -18,8 +16,11 @@ var PageSchema = new VikiSchema({
 	image: {
 		type: String
 	},
-	
-	items: [ItemSchema],
+
+    items: [{
+        type: String,
+        ref: 'Item'
+    }],
 	
 	width: Number,
 	
@@ -28,7 +29,9 @@ var PageSchema = new VikiSchema({
 	creator: {
 		type: String,
 		ref: 'User'
-	}
+    },
+
+    properties: {}
 });
 
 mongoose.model('Page', PageSchema);

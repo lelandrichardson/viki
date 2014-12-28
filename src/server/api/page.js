@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Page = mongoose.model('Page');
+var Item = mongoose.model('Item');
 
 var pages = express.Router();
 
@@ -16,7 +17,7 @@ pages.get('/:id', function(req, res) {
 
 	var id = req.param('id');
 
-	Page.findById(id).populate('creator').lean().exec(function(err, page) {
+    Page.findById(id).populate('creator items').lean().exec(function ( err, page ) {
 		if (err) {
 			res.error(404, "page not found");
 		} 
@@ -29,16 +30,19 @@ pages.get('/:id', function(req, res) {
 
 pages.post('/:id', function(req, res) {
 
-	var page = new Page(req.body);
+    //TODO: permissions
 
-	page.dateModified = Date.now();
+    var id = req.param('id');
+    var page = Object.assign({}, req.body, {
+        dateModified: Date.now()
+    });
 
-	page.save(function(err) {
-		if (err) {
-			return res.error(400, err);
-		}
-		res.success(page);
-	});
+    Page.findByIdAndUpdate(id, page, function ( err, saved ) {
+        if (err) {
+            return res.error(400, err);
+        }
+        res.success(saved);
+    });
 
 });
 
@@ -55,6 +59,34 @@ pages.put('/', function(req, res) {
 		}
 		res.success(page);
 	});
+});
+
+pages.put('/:id/items', function ( req, res ) {
+
+    var pageId = req.param('id');
+    var item = new Item(req.body);
+
+    item.pageId = pageId;
+
+    item.creator = req.user;
+
+    item.save(function ( err ) {
+        if (err) {
+            return res.error(400, err);
+        }
+
+        Page.findByIdAndUpdate(
+            pageId,
+            {$push: {items: item._id}},
+            {safe: true, upsert: true},
+            function ( err, page ) {
+                if (err) {
+                    return res.error(400, err);
+                }
+                res.success(item);
+            }
+        );
+    });
 });
 
 module.exports = pages;

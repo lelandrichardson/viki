@@ -1,5 +1,5 @@
 var React = require('react');
-require('react/addons')
+require('react/addons');
 var AppActions = require('../actions/AppActions');
 
 var cx = React.addons.classSet;
@@ -15,7 +15,8 @@ var ModalMixin = (function () {
             afterShown: React.PropTypes.func,
             onShow: React.PropTypes.func,
             backdrop: React.PropTypes.bool,
-            size: React.PropTypes.oneOf(["small", "medium", "large"])
+            size: React.PropTypes.oneOf(["small", "medium", "large"]),
+            modalId: React.PropTypes.string.isRequired
         },
 
         getDefaultProps: function () {
@@ -54,8 +55,8 @@ var ModalMixin = (function () {
 
             if (this.props.afterShown || this.afterShown) {
                 setTimeout(function () {
-                    this.props.afterShown(this);
-                    this.afterShown(this);
+                    this.afterShown && this.props.afterShown(this);
+                    this.afterShown && this.afterShown(this);
                 }.bind(this), ANIMATION_DURATION);
             }
         },
@@ -101,7 +102,6 @@ var ModalMixin = (function () {
         },
 
         render: function () {
-            console.log("render modal");
             var modalClassNames = cx({
                 modal: true,
                 shown: this.state.shown
@@ -124,7 +124,7 @@ var ModalMixin = (function () {
                     </div>
                 </div>
             );
-        },
+        }
     }
 
 }());

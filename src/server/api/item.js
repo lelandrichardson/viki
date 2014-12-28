@@ -22,32 +22,19 @@ items.get('/:id', function(req, res) {
 
 items.post('/:id', function(req, res) {
 
-	var id = req.param('id');
+    //TODO: permissions
 
-	Item.findById(req.param('id')).exec(function(err, item) {
+    var id = req.param('id');
+    var item = Object.assign({}, req.body, {
+        dateModified: Date.now()
+    });
 
-		if (err) {
-			return res.error(404, err);
-		}
-
-		if(item.creator !== req.user) {
-			return res.error(504)
-		}
-
-
-	});
-
-	var item = new Item(req.body);
-
-	item.dateModified = Date.now();
-
-	item.save(function(err) {
-		if (err) {
-			return res.error(400, err);
-		}
-		res.success(item);
-	});
-
+    Item.findByIdAndUpdate(id, item, function ( err, saved ) {
+        if (err) {
+            return res.error(400, err);
+        }
+        res.success(saved);
+    });
 });
 
 items.put('/', function(req, res) {

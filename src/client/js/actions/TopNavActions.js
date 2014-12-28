@@ -2,7 +2,7 @@ var Flux = require('react-flux');
 
 var Constants = Flux.createConstants([
     "SET_SELECTED_ITEM"
-]);
+], "TOP_NAV");
 
 var TopNavActions = Flux.createActions({
 
