@@ -7,14 +7,14 @@ var Constants = Flux.createConstants([
 
 var AppActions = Flux.createActions({
 
-    hideModal: [Constants.MODAL_HIDE, function(modalId){
+    hideModal: [Constants.MODAL_HIDE, function ( modalId ) {
         return modalId;
     }],
 
-    showModal: [Constants.MODAL_SHOW, function(modalId){
+    showModal: [Constants.MODAL_SHOW, function ( modalId ) {
         return modalId;
     }]
-    
+
 });
 
 module.exports = AppActions;

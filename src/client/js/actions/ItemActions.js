@@ -7,10 +7,10 @@ var Constants = Flux.createConstants([
 
 var ItemActions = Flux.createActions({
 
-    create: [Constants.CREATE, function(item){
+    create: [Constants.CREATE, function ( item ) {
         return $http.put('/api/item', item);
     }]
-    
+
 });
 
 module.exports = ItemActions;

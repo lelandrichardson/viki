@@ -3,11 +3,11 @@ var AuthConstants = require('../actions/AuthActions').Constants;
 
 var UserStore = Flux.createStore({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {};
     }
-    
-},[
+
+}, [
 
     // top nav add item button has been clicked
     // [AuthConstants.LOGIN_SUCCESS, function(payload){

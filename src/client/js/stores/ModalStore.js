@@ -6,59 +6,63 @@ var TopNavConstants = require('../actions/TopNavActions').Constants;
 
 var ModalStore = Flux.createStore({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             LOGIN: false,
-            REGISTER: false
+            REGISTER: false,
+            ADD_ITEM: false,
+            ADD_PAGE: false
         };
     },
 
-    getActiveModals: function() {
+    getActiveModals: function () {
         var result = [];
-        this.state.forEach(function(value,key) {
-            if (value) result.push(key);
+        this.state.forEach(function ( value, key ) {
+            if (value) {
+                result.push(key);
+            }
         });
         return result
     }
 
-},[
+}, [
 
     // top nav add item button has been clicked
-    [AuthConstants.LOGIN_SUCCESS, function(user){
+    [AuthConstants.LOGIN_SUCCESS, function ( user ) {
         this.setState({
             LOGIN: false
         });
     }],
 
-    [AuthConstants.REGISTER_SUCCESS, function(user){
+    [AuthConstants.REGISTER_SUCCESS, function ( user ) {
         this.setState({
             REGISTER: false
         });
     }],
 
-    [AuthConstants.LOGOUT_SUCCESS, function(user){
+    [AuthConstants.LOGOUT_SUCCESS, function ( user ) {
         this.setState({
             LOGIN: false
         });
     }],
 
-    [AppConstants.MODAL_HIDE_SUCCESS, function(modalId){
+    [AppConstants.MODAL_HIDE_SUCCESS, function ( modalId ) {
         var obj = {};
         obj[modalId] = false;
         this.setState(obj);
     }],
 
-    [AppConstants.MODAL_SHOW_SUCCESS, function(modalId){
+    [AppConstants.MODAL_SHOW_SUCCESS, function ( modalId ) {
         var obj = {};
         obj[modalId] = true;
         this.setState(obj);
     }],
 
-    [ItemConstants.CREATE_SUCCESS, function(modalId){
+    [ItemConstants.CREATE_SUCCESS, function ( modalId ) {
         this.setState({
             ADD_ITEM: false
         });
-    }],
+    }]
 
 ]);
 

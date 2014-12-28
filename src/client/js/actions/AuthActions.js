@@ -9,18 +9,18 @@ var Constants = Flux.createConstants([
 
 var AuthActions = Flux.createActions({
 
-    login: [Constants.LOGIN, function(credentials){
+    login: [Constants.LOGIN, function ( credentials ) {
         return $http.post('/api/user/login', credentials);
     }],
 
-    register: [Constants.REGISTER, function(credentials){
+    register: [Constants.REGISTER, function ( credentials ) {
         return credentials;
     }],
 
-    logout: [Constants.LOGOUT, function(credentials){
+    logout: [Constants.LOGOUT, function ( credentials ) {
         return credentials;
     }],
-    
+
 });
 
 module.exports = AuthActions;

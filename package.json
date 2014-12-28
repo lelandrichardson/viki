@@ -9,7 +9,6 @@
   "dependencies": {
     "MD5": "~1.2.0",
     "body-parser": "~1.9.0",
-    "browserify": "^8.0.1",
     "chalk": "~0.5",
     "compression": "~1.2.0",
     "cookie-parser": "~1.3.2",
@@ -21,8 +20,6 @@
     "express-handlebars": "~1.1.0",
     "express-session": "~1.9.1",
     "glob": "~4.0.5",
-    "gulp-sourcemaps": "^1.2.8",
-    "gulp-util": "^3.0.1",
     "handlebars-runtime": "~1.0.12",
     "helmet": "~0.5.0",
     "lodash": "~2.4.1",
@@ -35,20 +32,23 @@
     "react-flux": "latest",
     "react-router": "^0.11.6",
     "shortid": "~2.1.3",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.1"
+    "vinyl-transform": "^1.0.0"
   },
   "devDependencies": {
     "gulp": "^3.8.0",
-    "gulp-browserify": "^0.5.0",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-util": "^3.0.1",
     "gulp-concat": "^2.2.0",
     "gulp-sass": "^1.1.0",
-    "reactify": "^0.17.1"
+    "browserify": "^8.0.1",
+    "watchify": "^2.2.1",
+    "reactify": "^0.17.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server/server.js",
+    "start": "nodemon src/server/server.js  --watch src/server",
     "startdev": "nodemon src/server/server.js"
   },
   "author": "Leland Richardson",

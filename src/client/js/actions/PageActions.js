@@ -2,15 +2,20 @@ var Flux = require('react-flux');
 var $http = require('../util/$http');
 
 var Constants = Flux.createConstants([
-    "CREATE"
+    "CREATE",
+    "GET"
 ]);
 
 var PageActions = Flux.createActions({
 
-    create: [Constants.CREATE, function(page){
+    create: [Constants.CREATE, function ( page ) {
         return $http.put('/api/page', page);
+    }],
+
+    get: [Constants.GET, function ( pageId ) {
+        return $http.get('/api/page/' + pageId);
     }]
-    
+
 });
 
 module.exports = PageActions;

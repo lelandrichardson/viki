@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var ModalMixin = require('../../mixins/ModalMixin');
 var Eventable = require('../../mixins/Eventable');
@@ -14,19 +13,18 @@ var LoginModal = React.createClass({
         React.addons.LinkedStateMixin
     ],
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             username: '',
             password: ''
         };
     },
 
-    onShow: function() {
+    onShow: function () {
         this.refs.username.getDOMNode().focus();
     },
 
-
-    handleSubmit: function(e){
+    handleSubmit: function ( e ) {
         AuthActions.login({
             username: this.state.username,
             password: this.state.password
@@ -34,7 +32,7 @@ var LoginModal = React.createClass({
         e.preventDefault();
     },
 
-    renderModal: function() {
+    renderModal: function () {
         return (
             <form className="modal-content" onSubmit={this.handleSubmit}>
                 <div className="modal-header">

@@ -7,6 +7,8 @@ require('./Item');
 var ItemSchema = mongoose.model('Item').schema;
 
 var PageSchema = new VikiSchema({
+
+    title: String,
 	
 	slug: {
 		type: String,

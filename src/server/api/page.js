@@ -4,6 +4,14 @@ var Page = mongoose.model('Page');
 
 var pages = express.Router();
 
+
+// default page route
+pages.get('/', function(req, res) {
+
+	res.error(404, "no default page defined");
+
+});
+
 pages.get('/:id', function(req, res) {
 
 	var id = req.param('id');

@@ -3,38 +3,38 @@ var AuthConstants = require('../actions/AuthActions').Constants;
 
 var SessionStore = Flux.createStore({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
-            isLoggedIn:false
+            isLoggedIn: false
         };
     },
 
-    isLoggedIn: function() {
+    isLoggedIn: function () {
         return this.get('isLoggedIn');
     },
 
-    user: function() {
+    user: function () {
         return this.get('user');
     }
 
-},[
+}, [
 
     // top nav add item button has been clicked
-    [AuthConstants.LOGIN_SUCCESS, function(user){
+    [AuthConstants.LOGIN_SUCCESS, function ( user ) {
         this.setState({
             isLoggedIn: true,
             user: user
         });
     }],
 
-    [AuthConstants.REGISTER_SUCCESS, function(user){
+    [AuthConstants.REGISTER_SUCCESS, function ( user ) {
         this.setState({
             isLoggedIn: true,
             user: user
         });
     }],
 
-    [AuthConstants.LOGOUT_SUCCESS, function(){
+    [AuthConstants.LOGOUT_SUCCESS, function () {
         this.setState({
             isLoggedIn: false,
             user: null

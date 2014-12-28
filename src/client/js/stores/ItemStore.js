@@ -4,25 +4,25 @@ var ItemConstants = require('../actions/ItemActions').Constants;
 
 var ItemStore = Flux.createStore({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             items: [],
             selected: null
         };
     },
 
-    getSelectedItem: function(){
+    getSelectedItem: function () {
         return this.state.get('selected');
     },
 
-    getSubItems: function() {
+    getSubItems: function () {
         return this.state.get('items');
     }
 
-},[
+}, [
 
     // top nav add item button has been clicked
-    [ItemConstants.CREATE_SUCCESS, function(item){
+    [ItemConstants.CREATE_SUCCESS, function ( item ) {
         var items = this.get('items');
         items.push(item);
 
@@ -33,7 +33,7 @@ var ItemStore = Flux.createStore({
     }],
 
     // a sub item of the main displayed item has been clicked
-    [TopNavConstants.SET_SELECTED_ITEM_SUCCESS, function(item){
+    [TopNavConstants.SET_SELECTED_ITEM_SUCCESS, function ( item ) {
         this.setState({
             selected: item
         });

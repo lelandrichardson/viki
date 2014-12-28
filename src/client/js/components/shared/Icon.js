@@ -1,13 +1,12 @@
-/** @jsx React.DOM*/
 var React = require('react/addons');
 var cs = React.addons.classSet;
 
-function createIcon(type) {
+function createIcon ( type ) {
     var iconType = type;
     return React.createClass({
         render: function () {
             var type = iconType || this.props.type;
-            
+
             var classes = {
                 'fa': true,
                 'fa-spin': this.props.spin,
@@ -41,7 +40,7 @@ var IconStack = React.createClass({
         var className = cs(classes) + " " + (this.props.className || '');
         return (
             <span {...this.props} className={className}>{this.props.children}</span>
-            );
+        );
     }
 });
 
@@ -54,7 +53,7 @@ var Ul = React.createClass({
 
         return this.transferPropsTo(
             <ul {...this.props} className={className}>{this.props.children}</ul>
-            );
+        );
     }
 });
 
