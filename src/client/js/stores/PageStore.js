@@ -20,11 +20,11 @@ function isCurrentPage ( page ) {
 var PageStore = Flux.createStore({
 
     getInitialState: function () {
-        return {
+        return Object.assign({
             current: null,
             parent: null,
             history: []
-        };
+        }, Hydrate("PageStore"));
     },
 
     isCurrentPage: function ( page ) {

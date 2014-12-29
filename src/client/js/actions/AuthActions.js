@@ -14,12 +14,12 @@ var AuthActions = Flux.createActions({
     }],
 
     register: [Constants.REGISTER, function ( credentials ) {
-        return credentials;
+        return $http.post('/api/user/register');
     }],
 
-    logout: [Constants.LOGOUT, function ( credentials ) {
-        return credentials;
-    }],
+    logout: [Constants.LOGOUT, function () {
+        return $http.post('/api/user/logout');
+    }]
 
 });
 

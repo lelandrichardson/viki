@@ -21,9 +21,9 @@ function findByIdAndReplace ( array, replacement ) {
 var ItemStore = Flux.createStore({
 
     getInitialState: function () {
-        return {
+        return Object.assign({
             items: []
-        };
+        }, Hydrate("ItemStore"));
     },
 
     getItems: function () {

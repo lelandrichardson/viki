@@ -1,73 +1,77 @@
 @import "_variables";
 
 .center {
-    text-align:center;
+    text-align: center;
 }
 
 .align-right {
-	text-align: right;
+    text-align: right;
 }
 
 .align-left {
-	text-align: left;
+    text-align: left;
 }
 
 .left {
-    float:left;
+    float: left;
 }
 
 .right {
-    float:right;
+    float: right;
 }
 
 .cleafix {
-	overflow: auto;
-  	zoom: 1;
+    overflow: auto;
+    zoom: 1;
 }
 
 .hide {
-	display: none;
+    display: none;
 }
 
 .inline {
-	display: inline;
+    display: inline;
 }
 
 .inline-block {
-	display: inline-block;
+    display: inline-block;
+}
+
+.inverted {
+    color: #fefefe;
 }
 
 @mixin spacing-utility($suffix, $spacing) {
-	.pad#{$suffix} {
-		padding:$spacing;
-	}
-	.padl#{$suffix} {
-		padding-left:$spacing;
-	}
-	.padt#{$suffix} {
-		padding-top:$spacing;
-	}
-	.padr#{$suffix} {
-		padding-right:$spacing;
-	}
-	.padb#{$suffix} {
-		padding-bottom:$spacing;
-	}
-	.m#{$suffix} {
-		margin:$spacing;
-	}
-	.ml#{$suffix} {
-		margin-left:$spacing;
-	}
-	.mt#{$suffix} {
-		margin-top:$spacing;
-	}
-	.mr#{$suffix} {
-		margin-right:$spacing;
-	}
-	.mb#{$suffix} {
-		margin-bottom:$spacing;
-	}
+    .pad#{$suffix} {
+        padding: $spacing;
+    }
+    .padl#{$suffix} {
+        padding-left: $spacing;
+    }
+    .padt#{$suffix} {
+        padding-top: $spacing;
+    }
+    .padr#{$suffix} {
+        padding-right: $spacing;
+    }
+    .padb#{$suffix} {
+        padding-bottom: $spacing;
+    }
+    .m#{$suffix} {
+        margin: $spacing;
+    }
+    .ml#{$suffix} {
+        margin-left: $spacing;
+    }
+    .mt#{$suffix} {
+        margin-top: $spacing;
+    }
+    .mr#{$suffix} {
+        margin-right: $spacing;
+    }
+    .mb#{$suffix} {
+        margin-bottom: $spacing;
+    }
 }
 
 @include spacing-utility('4', 4px);
@@ -75,19 +79,16 @@
 @include spacing-utility('15', 15px);
 @include spacing-utility('20', 20px);
 
-
-
-
 @mixin color-utility($suffix, $color) {
-	.border-#{$suffix} {
-		border-color: $color;
-	}
-	.text-#{$suffix} {
-		color: $color;
-	}
-	.bg-#{$suffix} {
-		background-color: $color;
-	}
+    .border-#{$suffix} {
+        border-color: $color;
+    }
+    .text-#{$suffix} {
+        color: $color;
+    }
+    .bg-#{$suffix} {
+        background-color: $color;
+    }
 }
 
 @include color-utility('success', $color-success);

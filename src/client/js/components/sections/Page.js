@@ -15,6 +15,9 @@ var Page = React.createClass({
 
     statics: {
         willTransitionTo: function ( transition, params ) {
+            // TODO: we could check here if the pagestore currently has the same page id set as current...
+            // TODO: in which case, we wouldn't need to wait for anything, or call the GET action.
+
             // when transitioning to a new page, we want to wait for the GET request to complete
             transition.waitFor(PageActions.Constants.GET);
             PageActions.get(params.pageId);

@@ -15,7 +15,8 @@ var TopNav = React.createClass({
 
     getStateFromStores: function () {
         return {
-            isLoggedIn: SessionStore.isLoggedIn()
+            isLoggedIn: SessionStore.isLoggedIn(),
+            user: SessionStore.user()
         };
     },
 
@@ -35,35 +36,57 @@ var TopNav = React.createClass({
         AppActions.showModal("LOGIN");
     },
 
+    items: [
+        function cogWheel () {
+            return (
+                <li className="inline">
+                    <a className="nav-btn">
+                        <Icon type="cog" onClick={this.cogClick} />
+                    </a>
+                </li>
+            );
+        },
+
+        function message () {
+            return this.state.isLoggedIn && (
+                <li className="inline inverted">
+                    Welcome {this.state.user.username}!
+                </li>
+            );
+        },
+
+        function addItemButton () {
+            return (
+                <li className="inline right">
+                    <a className="nav-btn" onClick={this.addClick}>
+                        <Icon type="plus" />
+                    </a>
+                </li>
+            );
+        },
+
+        function loginButton () {
+            return this.state.isLoggedIn ? (
+                <li className="inline right">
+                    <a className="nav-btn" onClick={this.logout}>
+                        Logout
+                    </a>
+                </li>
+            ) : (
+                <li className="inline right">
+                    <a className="nav-btn" onClick={this.login}>
+                        Log In
+                    </a>
+                </li>
+            );
+        }
+    ],
+
     render: function () {
         return (
             <div className="top-nav">
                 <ul>
-                    <li className="inline">
-                        <a className="nav-btn">
-                            <Icon type="cog" onClick={this.cogClick} />
-                        </a>
-                    </li>
-                    <li className="inline">
-                        <a className="nav-btn">
-							{this.state.isLoggedIn ? "LOGGED IN!" : "ANONYMOUS!"}
-                        </a>
-                    </li>
-                    <li className="inline right">
-                        <a className="nav-btn" onClick={this.addClick}>
-                            <Icon type="plus" />
-                        </a>
-                    </li>
-                    <li className="inline right">
-                        <a className="nav-btn" onClick={this.logout}>
-                            Logout
-                        </a>
-                    </li>
-                    <li className="inline right">
-                        <a className="nav-btn" onClick={this.login}>
-                            Login
-                        </a>
-                    </li>
+                {this.items.map(fn => fn.call(this))}
                 </ul>
             </div>
         );

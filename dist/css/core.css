@@ -481,6 +481,9 @@ textarea {
 .inline-block {
   display: inline-block; }
 
+.inverted {
+  color: #fefefe; }
+
 .pad4 {
   padding: 4px; }
 
