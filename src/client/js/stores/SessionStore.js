@@ -4,9 +4,9 @@ var AuthConstants = require('../actions/AuthActions').Constants;
 var SessionStore = Flux.createStore({
 
     getInitialState: function () {
-        return {
+        return Object.assign({
             isLoggedIn: false
-        };
+        }, Hydrate("SessionStore"));
     },
 
     isLoggedIn: function () {

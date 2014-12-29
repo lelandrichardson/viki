@@ -16,25 +16,24 @@ function swallowError (error) {
     this.emit('end');
 }
 
-function scripts(watch) {
+function scripts(input, output, watch) {
     var bundler,
-        start = './src/client/js/main.js',
         options = { debug: true };
 
     if (watch) {
-        bundler = watchify(browserify(start, Object.assign({}, watchify.args, options)));
+        bundler = watchify(browserify(input, Object.assign({}, watchify.args, options)));
         bundler.on('update', rebundle);
     } else {
-        bundler = browserify(start, options);
+        bundler = browserify(input, options);
     }
 
     bundler.transform(reactify, { debug: true, harmony: true });
 
     function rebundle() {
-        console.log("re-building js files");
+        console.log("building '" + input + "' -> '" + output + "'");
         return bundler.bundle()
             .on('error', swallowError)
-            .pipe(source('main.js'))
+            .pipe(source(output))
             .pipe(gulp.dest('dist/js'));
     }
 
@@ -42,11 +41,13 @@ function scripts(watch) {
 }
 
 gulp.task('js-build', function() {
-    return scripts(false);
+    scripts('./src/client/js/lib.js','lib.js', false);
+    scripts('./src/client/js/main.js','main.js', false);
 });
 
 gulp.task('js-watch', function() {
-    return scripts(true);
+    scripts('./src/client/js/lib.js','lib.js', true);
+    scripts('./src/client/js/main.js','main.js', true);
 });
 
 gulp.task('sass', function () {
@@ -56,15 +57,22 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('dist/css'));
 });
 
+var FILES_TO_COPY = [
+    'src/client/**/*.html',
+    'src/client/**/*.jpg',
+    'src/client/**/*.png'
+];
+
 gulp.task('copy', function() {
-    gulp.src('src/client/*.html')
+    gulp.src(FILES_TO_COPY)
       .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', ['js-build', 'copy', 'sass']);
 
 gulp.task('watch', function() {
-    scripts(true);
+    scripts('./src/client/js/lib.js','lib.js', true);
+    scripts('./src/client/js/main.js','main.js', true);
     gulp.watch('src/**/*.scss', ['sass']);
-    gulp.watch('src/client/*.html', ['copy']);
+    gulp.watch(FILES_TO_COPY, ['copy']);
 });

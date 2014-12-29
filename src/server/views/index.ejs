@@ -8,15 +8,15 @@
     </head>
     <body>
         <div id="main" class="container"></div>
-<!--         <div class="main-window">
-            <div class="lens">
-                <img class="full-img" src="/assets/images/1.jpg"/>
-            </div>
-            <div class="sub-items">
-                <div class="item"></div>
-            </div>
-        </div> -->
         <script src="/assets/js/jquery.min.js"></script>
+        <script src="/js/lib.js"></script>
+        <script><%
+            var data = request.hydrate();
+
+            for (var store in data) { %>
+            Hydrate("<%= store %>", <%- JSON.stringify(data[store]) %>);
+            <% } %>
+        </script>
         <script src="/js/main.js"></script>
     </body>
 </html>
