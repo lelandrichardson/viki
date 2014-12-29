@@ -1,5 +1,4 @@
 var EventEmitter = require('events').EventEmitter;
-require('es6-shim');
 
 var AppEvents = Object.assign(EventEmitter.prototype, {
     // handleViewAction: function(action) {

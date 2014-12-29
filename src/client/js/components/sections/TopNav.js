@@ -39,7 +39,7 @@ var TopNav = React.createClass({
     items: [
         function cogWheel () {
             return (
-                <li className="inline">
+                <li key="cogwheel" className="inline">
                     <a className="nav-btn">
                         <Icon type="cog" onClick={this.cogClick} />
                     </a>
@@ -49,7 +49,7 @@ var TopNav = React.createClass({
 
         function message () {
             return this.state.isLoggedIn && (
-                <li className="inline inverted">
+                <li key="message" className="inline inverted">
                     Welcome {this.state.user.username}!
                 </li>
             );
@@ -57,7 +57,7 @@ var TopNav = React.createClass({
 
         function addItemButton () {
             return (
-                <li className="inline right">
+                <li key="addItemBtn" className="inline right">
                     <a className="nav-btn" onClick={this.addClick}>
                         <Icon type="plus" />
                     </a>
@@ -67,13 +67,13 @@ var TopNav = React.createClass({
 
         function loginButton () {
             return this.state.isLoggedIn ? (
-                <li className="inline right">
+                <li key="logoutBtn" className="inline right">
                     <a className="nav-btn" onClick={this.logout}>
                         Logout
                     </a>
                 </li>
             ) : (
-                <li className="inline right">
+                <li key="loginBtn" className="inline right">
                     <a className="nav-btn" onClick={this.login}>
                         Log In
                     </a>

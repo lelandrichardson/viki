@@ -1,9 +1,6 @@
-require('es6-shim');
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./routes');
-//var resolveKeys = require('./util/resolveKeys');
-var Promise = require('es6-promise').Promise;
 var Transition = require('react-router/modules/utils/Transition');
 var Dispatcher = require('./Dispatcher');
 

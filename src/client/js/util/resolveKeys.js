@@ -1,5 +1,3 @@
-var Promise = require('es6-promise').Promise;
-
 var resolveKeys = function ( object ) {
     return new Promise(function ( resolve, reject ) {
         var keys = Object.keys(object),
