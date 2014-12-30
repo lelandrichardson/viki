@@ -19,6 +19,7 @@
     "express": "latest",
     "express-handlebars": "~1.1.0",
     "express-session": "~1.9.1",
+    "formidable": "^1.0.16",
     "glob": "~4.0.5",
     "handlebars-runtime": "~1.0.12",
     "helmet": "~0.5.0",
