@@ -1,0 +1,51 @@
+@import "_variables";
+
+$tab-padding: 8px;
+$border-radius: 4px;
+$border-color: #ccc;
+$foreground-color: #f3f3f3;
+
+.vertical-tabs {
+
+    .tabs {
+        // ul
+
+    }
+
+    .tab {
+        // li
+        border-bottom-left-radius: $border-radius;
+        border-top-left-radius: $border-radius;
+        color: #ccc;
+
+        &.active {
+            background-color: $foreground-color;
+            border: 1px solid $border-color;
+            border-radius: 2px;
+            border-right: none;
+            margin-right: -1px;
+            color: #666;
+        }
+    }
+
+    .tab-button {
+        // a
+        padding: $tab-padding;
+        display: inline-block;
+        &:hover {
+            color: #666;
+        }
+    }
+
+    .tab-pane {
+        padding: 8px;
+        background-color: $foreground-color;
+        border: 1px solid $border-color;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+}

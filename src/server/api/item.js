@@ -5,22 +5,26 @@ var Item = mongoose.model('Item');
 
 var items = express.Router();
 
-items.get('/:id', function(req, res) {
+function getItemFull ( req, res, id ) {
+    Item.findById(id).populate('creator').lean().exec(function ( err, item ) {
+        if (err) {
+            res.error(404, "item not found");
+        }
+        if (!item) {
+            res.error(404, "item not found");
+        }
+        res.success(item);
+    });
+}
 
-	var id = req.param('id');
+items.get('/:id', function ( req, res ) {
 
-	Item.findById(id).populate('creator').lean().exec(function(err, item) {
-		if (err) {
-			res.error(404, "page not found");
-		} 
-		if (!page) {
-			res.error(404, "page not found");
-		}
-		res.success(item);
-	});
+    var id = req.param('id');
+
+    getItemFull(req, res, id);
 });
 
-items.post('/:id', function(req, res) {
+items.post('/:id', function ( req, res ) {
 
     //TODO: permissions
 
@@ -33,22 +37,22 @@ items.post('/:id', function(req, res) {
         if (err) {
             return res.error(400, err);
         }
-        res.success(saved);
+        getItemFull(req, res, id);
     });
 });
 
-items.put('/', function(req, res) {
+items.put('/', function ( req, res ) {
 
-	var item = new Item(req.body);
+    var item = new Item(req.body);
 
-	item.creator = req.user;
+    item.creator = req.user;
 
-	item.save(function(err) {
-		if (err) {
-			return res.error(400, err);
-		}
-		res.success(item);
-	});
+    item.save(function ( err, saved ) {
+        if (err) {
+            return res.error(400, err);
+        }
+        getItemFull(req, res, saved._id);
+    });
 });
 
 module.exports = items;

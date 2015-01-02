@@ -6,15 +6,38 @@ var parse = function ( req ) {
     catch (e) {
         result = req.responseText;
     }
-    return [result, req];
+    return result;
 };
 
-var xhr = function ( type, url, data ) {
+var defaults = {
+    contentType: "application/json",
+    stringify: true
+};
+
+var applyOptions = function ( request, options ) {
+    if (options.contentType !== false) {
+        request.setRequestHeader('Content-type', options.contentType);
+    }
+};
+
+var transformData = function ( request, data, options ) {
+    if (options.stringify) {
+        data = JSON.stringify(data);
+    }
+    return data;
+};
+
+var xhr = function ( type, url, data, options ) {
     return new Promise(function ( resolve, reject ) {
         var XHR = window.XMLHttpRequest || ActiveXObject;
         var request = new XHR('MSXML2.XMLHTTP.3.0');
+
+        options = Object.assign({}, defaults, options || {});
+
         request.open(type, url, true);
-        request.setRequestHeader('Content-type', 'application/json');
+
+        applyOptions(request, options);
+
         request.onreadystatechange = function () {
             var response;
             if (request.readyState === 4) {
@@ -22,7 +45,7 @@ var xhr = function ( type, url, data ) {
 
                 if (request.status >= 200 && request.status < 300) {
                     if (response.success === false) {
-                        reject(r);
+                        reject(response);
                     }
 
                     if (response.success === true) {
@@ -31,7 +54,7 @@ var xhr = function ( type, url, data ) {
 
                     resolve(response);
                 } else {
-                    // TODO: this isn't quite right any more...
+                    // TODO: this isn't quite right after migrating from jQuery
                     reject({
                         success: false,
                         code: response.status,
@@ -41,25 +64,25 @@ var xhr = function ( type, url, data ) {
                 }
             }
         };
-        request.send(JSON.stringify(data));
+        request.send(transformData(request, data, options));
     });
 };
 
 module.exports = {
-    get: function ( url ) {
-        return xhr("GET", url);
+    get: function ( url, options ) {
+        return xhr("GET", url, null, options);
     },
 
-    put: function ( url, data ) {
-        return xhr("PUT", url, data);
+    put: function ( url, data, options ) {
+        return xhr("PUT", url, data, options);
     },
 
-    post: function ( url, data ) {
-        return xhr("POST", url, data);
+    post: function ( url, data, options ) {
+        return xhr("POST", url, data, options);
     },
 
-    "delete": function ( url ) {
-        return xhr("DELETE", url);
+    "delete": function ( url, options ) {
+        return xhr("DELETE", url, null, options);
     },
 
     xhr: xhr

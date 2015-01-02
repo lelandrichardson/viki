@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    ImageSchema = require('./Image'),
 	VikiSchema = require('./VikiSchema');
 
 var ItemSchema = new VikiSchema({
@@ -7,9 +8,7 @@ var ItemSchema = new VikiSchema({
 
 	text: String,
 
-	image: {
-		type: String
-	},
+    image: ImageSchema,
 
 	width: Number,
 

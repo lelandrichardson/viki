@@ -57,10 +57,6 @@ var Page = React.createClass({
                 <div className="sub-items mt20">
 					{items}
                 </div>
-                <form action="/upload" encType="multipart/form-data" method="post">
-                    <input name="upload" type="file" />
-                    <button type="submit">Submit</button>
-                </form>
             </div>
         );
     }

@@ -468,9 +468,24 @@ textarea {
 .right {
   float: right; }
 
-.cleafix {
+.clearfix {
   overflow: auto;
   zoom: 1; }
+
+.mb {
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1; }
+  .mb .media {
+    float: left; }
+    .mb .media.right {
+      float: right; }
+    .mb .media img {
+      display: block; }
+  .mb .body {
+    overflow: hidden;
+    _overflow: visible;
+    zoom: 1; }
 
 .hide {
   display: none; }
@@ -543,6 +558,36 @@ textarea {
 
 .mb8 {
   margin-bottom: 8px; }
+
+.pad10 {
+  padding: 10px; }
+
+.padl10 {
+  padding-left: 10px; }
+
+.padt10 {
+  padding-top: 10px; }
+
+.padr10 {
+  padding-right: 10px; }
+
+.padb10 {
+  padding-bottom: 10px; }
+
+.m10 {
+  margin: 10px; }
+
+.ml10 {
+  margin-left: 10px; }
+
+.mt10 {
+  margin-top: 10px; }
+
+.mr10 {
+  margin-right: 10px; }
+
+.mb10 {
+  margin-bottom: 10px; }
 
 .pad15 {
   padding: 15px; }
@@ -639,3 +684,27 @@ textarea {
 
 .bg-danger {
   background-color: #d9534f; }
+
+.vertical-tabs .tab {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  color: #ccc; }
+  .vertical-tabs .tab.active {
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    border-right: none;
+    margin-right: -1px;
+    color: #666; }
+.vertical-tabs .tab-button {
+  padding: 8px;
+  display: inline-block; }
+  .vertical-tabs .tab-button:hover {
+    color: #666; }
+.vertical-tabs .tab-pane {
+  padding: 8px;
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+  display: none; }
+  .vertical-tabs .tab-pane.active {
+    display: block; }

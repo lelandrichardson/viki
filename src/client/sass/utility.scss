@@ -20,9 +20,33 @@
     float: right;
 }
 
-.cleafix {
+.clearfix {
     overflow: auto;
     zoom: 1;
+}
+
+.mb {
+    overflow: hidden;
+    _overflow: visible;
+    zoom: 1;
+
+    .media {
+        float: left;
+
+        &.right {
+            float: right;
+        }
+
+        img {
+            display: block;
+        }
+    }
+
+    .body {
+        overflow: hidden;
+        _overflow: visible;
+        zoom: 1;
+    }
 }
 
 .hide {
@@ -76,6 +100,7 @@
 
 @include spacing-utility('4', 4px);
 @include spacing-utility('8', 8px);
+@include spacing-utility('10', 10px);
 @include spacing-utility('15', 15px);
 @include spacing-utility('20', 20px);
 

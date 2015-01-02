@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-	shortId = require('shortid'),
+    ImageSchema = require('./Image'),
 	VikiSchema = require('./VikiSchema');
 
 var PageSchema = new VikiSchema({
@@ -12,19 +12,13 @@ var PageSchema = new VikiSchema({
 		type: String,
 		unique: true
 	},
-	
-	image: {
-		type: String
-	},
+
+    image: ImageSchema,
 
     items: [{
         type: String,
         ref: 'Item'
     }],
-	
-	width: Number,
-	
-	height: Number,
 
 	creator: {
 		type: String,

@@ -5,60 +5,66 @@ var Item = mongoose.model('Item');
 
 var pages = express.Router();
 
+function getPageFull ( req, res, id ) {
+    Page.findById(id).populate('creator items').lean().exec(function ( err, page ) {
+        if (err) {
+            res.error(404, "page not found");
+        }
+        if (!page) {
+            res.error(404, "page not found");
+        }
+        res.success(page);
+    });
+}
 
 // default page route
-pages.get('/', function(req, res) {
+pages.get('/', function ( req, res ) {
 
-	res.error(404, "no default page defined");
+    res.error(404, "no default page defined");
 
 });
 
-pages.get('/:id', function(req, res) {
+pages.get('/:id', function ( req, res ) {
 
-	var id = req.param('id');
+    var id = req.param('id');
 
-    Page.findById(id).populate('creator items').lean().exec(function ( err, page ) {
-		if (err) {
-			res.error(404, "page not found");
-		} 
-		if (!page) {
-			res.error(404, "page not found");
-		}
-		res.success(page);
-	});
+    getPageFull(req, res, id);
+
 });
 
-pages.post('/:id', function(req, res) {
+pages.post('/:id', function ( req, res ) {
 
-    //TODO: permissions
+    //TODO: check permissions
 
     var id = req.param('id');
     var page = Object.assign({}, req.body, {
         dateModified: Date.now()
     });
 
+    console.log(page.image);
+
     Page.findByIdAndUpdate(id, page, function ( err, saved ) {
         if (err) {
-            return res.error(400, err);
+            res.error(400, err);
+            return;
         }
-        res.success(saved);
+        getPageFull(req, res, id);
     });
 
 });
 
+pages.put('/', function ( req, res ) {
 
-pages.put('/', function(req, res) {
+    var page = new Page(req.body);
 
-	var page = new Page(req.body);
+    page.creator = req.user;
 
-	page.creator = req.user;
-
-	page.save(function(err) {
-		if (err) {
-			return res.error(400, err);
-		}
-		res.success(page);
-	});
+    page.save(function ( err ) {
+        if (err) {
+            return res.error(400, err);
+        }
+        getPageFull(req, res, page._id);
+    });
 });
 
 pages.put('/:id/items', function ( req, res ) {
@@ -77,8 +83,8 @@ pages.put('/:id/items', function ( req, res ) {
 
         Page.findByIdAndUpdate(
             pageId,
-            {$push: {items: item._id}},
-            {safe: true, upsert: true},
+            { $push: { items: item._id } },
+            { safe: true, upsert: true },
             function ( err, page ) {
                 if (err) {
                     return res.error(400, err);

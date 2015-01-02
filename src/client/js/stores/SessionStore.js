@@ -27,6 +27,13 @@ var SessionStore = Flux.createStore({
         });
     }],
 
+    [AuthConstants.LOGIN_FAIL, function () {
+        this.setState({
+            isLoggedIn: false,
+            user: null
+        });
+    }],
+
     [AuthConstants.REGISTER_SUCCESS, function ( user ) {
         this.setState({
             isLoggedIn: true,

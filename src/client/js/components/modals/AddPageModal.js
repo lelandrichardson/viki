@@ -1,17 +1,25 @@
 var React = require('react');
 require('react/addons');
 
+// Stores
 var PageStore = require('../../stores/PageStore');
 
+// Mixins
 var ModalMixin = require('../../mixins/ModalMixin');
 
+// Actions
 var PageActions = require('../../actions/PageActions');
+
+// Components
+var { VerticalTabs, Tab, TabPane } = require('../shared/VerticalTabs');
+var ImageChooser = require('../shared/ImageChooser');
 
 var AddPageModal = React.createClass({
 
     _emptyState: {
         text: '',
-        title: ''
+        title: '',
+        image: null
     },
 
     propTypes: {
@@ -38,13 +46,16 @@ var AddPageModal = React.createClass({
     },
 
     onShow: function () {
-        this.refs.title.getDOMNode().focus();
+        if (this.refs.title) {
+            this.refs.title.getDOMNode().focus();
+        }
     },
 
     handleAdd: function ( e ) {
         PageActions.create({
             text: this.state.text,
-            title: this.state.title
+            title: this.state.title,
+            image: this.state.image
         });
         this.setState(this._emptyState);
         e.preventDefault();
@@ -53,7 +64,8 @@ var AddPageModal = React.createClass({
     handleSave: function ( e ) {
         PageActions.update(this.props.page._id, {
             text: this.state.text,
-            title: this.state.title
+            title: this.state.title,
+            image: this.state.image
         });
         e.preventDefault();
     },
@@ -81,11 +93,30 @@ var AddPageModal = React.createClass({
                     <b className="txt-large">{title}</b>
                 </div>
                 <div className="modal-body">
-                    <div>Title:</div>
-                    <input type="text" ref="title" className="mb20" valueLink={this.linkState('title')} />
+                    <VerticalTabs>
+                        <TabPane icon="image">
+                            <div>Title:</div>
+                            <input type="text" ref="title" className="mb20" valueLink={this.linkState('title')} />
 
-                    <div>Text:</div>
-                    <input type="text" ref="text" valueLink={this.linkState('text')} />
+                            <div>Text:</div>
+                            <input type="text" ref="text" className="mb20" valueLink={this.linkState('text')} />
+
+                            <div>Image:</div>
+                            <ImageChooser valueLink={this.linkState('image')} />
+                        </TabPane>
+                        <TabPane icon="cog">
+                            <div>
+                                This is another tab
+                            </div>
+                        </TabPane>
+                        <TabPane icon="eyedropper">
+                            <div>
+                                This is another tab
+                                <br/>
+                                with more spance
+                            </div>
+                        </TabPane>
+                    </VerticalTabs>
                 </div>
                 <div className="modal-footer">{buttons}</div>
             </form>

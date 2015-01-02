@@ -12,10 +12,14 @@ var TopNavActions = require('../../actions/TopNavActions');
 var AppActions = require('../../actions/AppActions');
 var ItemActions = require('../../actions/ItemActions');
 
+// Components
+var ImageChooser = require('../shared/ImageChooser');
+
 var AddItemModal = React.createClass({
 
     _emptyState: {
-        text: ''
+        text: '',
+        image: null
     },
 
     mixins: [
@@ -47,7 +51,8 @@ var AddItemModal = React.createClass({
     handleAdd: function ( e ) {
         ItemActions.create({
             pageId: this.state.pageId,
-            text: this.state.text
+            text: this.state.text,
+            image: this.state.image
         });
         this.setState(this._emptyState);
         e.preventDefault();
@@ -56,7 +61,8 @@ var AddItemModal = React.createClass({
     handleSave: function ( e ) {
         ItemActions.update(this.props.item._id, {
             pageId: this.state.pageId,
-            text: this.state.text
+            text: this.state.text,
+            image: this.state.image
         });
         e.preventDefault();
     },
@@ -88,6 +94,9 @@ var AddItemModal = React.createClass({
 
                     <div>Text:</div>
                     <input type="text" ref="text" valueLink={this.linkState('text')} />
+
+                    <div>Image:</div>
+                    <ImageChooser valueLink={this.linkState('image')} />
                 </div>
                 <div className="modal-footer">{buttons}</div>
             </form>
