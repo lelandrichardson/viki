@@ -13,6 +13,7 @@ var PageActions = require('../../actions/PageActions');
 // Components
 var { VerticalTabs, Tab, TabPane } = require('../shared/VerticalTabs');
 var ImageChooser = require('../shared/ImageChooser');
+var Select = require('../shared/Select');
 
 var AddPageModal = React.createClass({
 
@@ -100,6 +101,9 @@ var AddPageModal = React.createClass({
 
                             <div>Text:</div>
                             <input type="text" ref="text" className="mb20" valueLink={this.linkState('text')} />
+
+                            <div>Image:</div>
+                            <ImageChooser valueLink={this.linkState('image')} />
 
                             <div>Image:</div>
                             <ImageChooser valueLink={this.linkState('image')} />

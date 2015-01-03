@@ -28,3 +28,7 @@ node_modules
 .lock-wscript
 
 .idea
+
+# media folder is for uploaded images. don't commit.
+dist/media/*.*
+dist/media/tmp/*.*

@@ -55,6 +55,10 @@ gulp.task('sass', function () {
         .pipe(sass({ style: 'compressed' }).on('error', swallowError))
         .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));
+
+    gulp.src(['node_modules/react-select/dist/default.css'])
+        .pipe(concat('lib.css'))
+        .pipe(gulp.dest('dist/css'));
 });
 
 var FILES_TO_COPY = [

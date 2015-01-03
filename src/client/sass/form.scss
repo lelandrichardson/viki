@@ -1,55 +1,53 @@
 @import "_variables";
 
-$border-color: #bababa;
-$border-color--focused: #5587D7;
-
 input[type=text],
 input[type=password],
 textarea {
-	width:100%;
-	padding: 8px;
-	outline:none;
-	border:1px solid;
-	border-color: $border-color lighten($border-color,5%) lighten($border-color,5%);
-	box-shadow: none;
-	
-	&:hover {
-		border-color: darken($border-color,15%) darken($border-color,10%) darken($border-color,10%);
-		box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-	}
+    width: 100%;
+    padding: 8px;
+    outline: none;
+    border: 1px solid;
+    border-color: $input-border-color lighten($input-border-color, 5%) lighten($input-border-color, 5%);
+    box-shadow: none;
+    transition: all 200ms ease;
 
-	&:focus {
-		border-color: $border-color--focused;
-		box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-	}
+    &:hover {
+        border-color: darken($input-border-color, 15%) darken($input-border-color, 10%) darken($input-border-color, 10%);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+        border-color: $input-border-color--focused;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @mixin input-border-modifier($color) {
-	border-color:$color;
+    border-color: $color;
 
-	&:hover,
-	&:focus {
-		border-color:darken($color, 10%);
-	}
+    &:hover,
+    &:focus {
+        border-color: darken($color, 10%);
+    }
 
 }
 
 input,
 textarea {
-	&.error {
-		@include input-border-modifier($color-danger);
-	}
-	&.info {
-		@include input-border-modifier($color-info)
-	}
-	&.success {
-		@include input-border-modifier($color-success);
-	}
-	&.warning {
-		@include input-border-modifier($color-warning);
-	}
+    &.error {
+        @include input-border-modifier($color-danger);
+    }
+    &.info {
+        @include input-border-modifier($color-info)
+    }
+    &.success {
+        @include input-border-modifier($color-success);
+    }
+    &.warning {
+        @include input-border-modifier($color-warning);
+    }
 }
 
 textarea {
-	min-height: 100px;
+    min-height: 100px;
 }

@@ -54,7 +54,6 @@ var ImageUpload = React.createClass({
     },
 
     render: function () {
-
         return (
             <div>
                 <input className="hide" ref="file" name="file" type="file" accept="image/*" onChange={this.handleFileChange}/>

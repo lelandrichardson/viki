@@ -57,7 +57,7 @@ module.exports = {
                         id: id,
                         width: size.width,
                         height: size.height,
-                        type: extension
+                        ext: extension
                     });
                 });
             });

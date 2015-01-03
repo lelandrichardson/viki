@@ -4,7 +4,7 @@ var ImageSchema = {
     id: String,
     width: Number,
     height: Number,
-    type: String
+    ext: String
 };
 
 module.exports = ImageSchema;

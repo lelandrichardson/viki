@@ -57,6 +57,10 @@ express.response.error = function ( a, b, c ) {
     });
 };
 
+express.request.getInt = function ( name ) {
+    return parseInt(this.param(name) || 0, 10);
+};
+
 var HYDRATE_KEY = "__store_hydration";
 
 express.request.hydrate = function ( storeName, data ) {
@@ -198,13 +202,13 @@ module.exports = function ( db ) {
         // Error page
         //TODO: make an error pge
         res.status(500).render('500', {
-            error: err.stack
+            error: err
         });
     });
 
     // Assume 404 since no middleware responded
     app.use(function ( req, res ) {
-        res.status(404).render('404.html', {
+        res.status(404).render('404', {
             url: req.originalUrl,
             error: 'Not Found'
         });

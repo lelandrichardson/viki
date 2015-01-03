@@ -1,7 +1,8 @@
 var React = require('react');
 require('react/addons');
 
-var ModalMixin = require('../../mixins/ModalMixin');
+var ModalMixin = require('../../mixins/ModalMixin')
+var $http = require('../../util/$http');
 
 // Stores
 var PageStore = require('../../stores/PageStore');
@@ -14,11 +15,13 @@ var ItemActions = require('../../actions/ItemActions');
 
 // Components
 var ImageChooser = require('../shared/ImageChooser');
+var Select = require('../shared/Select');
 
 var AddItemModal = React.createClass({
 
     _emptyState: {
         text: '',
+        linkTo: null,
         image: null
     },
 
@@ -52,7 +55,8 @@ var AddItemModal = React.createClass({
         ItemActions.create({
             pageId: this.state.pageId,
             text: this.state.text,
-            image: this.state.image
+            image: this.state.image,
+            linkTo: this.state.linkTo
         });
         this.setState(this._emptyState);
         e.preventDefault();
@@ -62,9 +66,24 @@ var AddItemModal = React.createClass({
         ItemActions.update(this.props.item._id, {
             pageId: this.state.pageId,
             text: this.state.text,
-            image: this.state.image
+            image: this.state.image,
+            linkTo: this.state.linkTo
         });
         e.preventDefault();
+    },
+
+    linkToAsyncOptions: function ( input, callback ) {
+        $http.get('/api/page/list', { q: input }).then(function ( res ) {
+            var results = res.results.map(function ( page ) {
+                return {
+                    value: page._id,
+                    label: page.title
+                };
+            });
+            callback(null, {
+                options: results
+            });
+        });
     },
 
     renderModal: function () {
@@ -97,6 +116,9 @@ var AddItemModal = React.createClass({
 
                     <div>Image:</div>
                     <ImageChooser valueLink={this.linkState('image')} />
+
+                    <div>Select:</div>
+                    <Select valueLink={this.linkState('linkTo')} asyncOptions={this.linkToAsyncOptions} />
                 </div>
                 <div className="modal-footer">{buttons}</div>
             </form>

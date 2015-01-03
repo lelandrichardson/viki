@@ -16,7 +16,7 @@ var Image = React.createClass({
                 height: this.props.height
             };
 
-        return ["/media/", image.id, image.type].join("");
+        return ["/media/", image.id, image.ext].join("");
     },
 
     render: function () {

@@ -1,17 +1,18 @@
-var mongoose = require('mongoose'),
-    ImageSchema = require('./Image'),
-	VikiSchema = require('./VikiSchema');
+var mongoose = require('mongoose');
+var ImageSchema = require('./Image');
+var VikiSchema = require('./VikiSchema');
+var MongooseList = require('mongoose-list');
 
 var PageSchema = new VikiSchema({
 
     title: String,
 
     text: String,
-	
-	slug: {
-		type: String,
-		unique: true
-	},
+
+    slug: {
+        type: String,
+        unique: true
+    },
 
     image: ImageSchema,
 
@@ -20,12 +21,14 @@ var PageSchema = new VikiSchema({
         ref: 'Item'
     }],
 
-	creator: {
-		type: String,
-		ref: 'User'
+    creator: {
+        type: String,
+        ref: 'User'
     },
 
     properties: {}
 });
+
+PageSchema.plugin(MongooseList, { searchFields: ['title', 'text'] });
 
 mongoose.model('Page', PageSchema);

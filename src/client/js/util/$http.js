@@ -3,7 +3,7 @@ var parse = function ( req ) {
     try {
         result = JSON.parse(req.responseText);
     }
-    catch (e) {
+    catch ( e ) {
         result = req.responseText;
     }
     return result;
@@ -25,6 +25,20 @@ var transformData = function ( request, data, options ) {
         data = JSON.stringify(data);
     }
     return data;
+};
+
+var params = function ( obj ) {
+    var pairs = [];
+
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+            var k = encodeURIComponent(prop),
+                v = encodeURIComponent(obj[prop]);
+            pairs.push(k + "=" + v);
+        }
+    }
+
+    return pairs.join("&");
 };
 
 var xhr = function ( type, url, data, options ) {
@@ -69,8 +83,8 @@ var xhr = function ( type, url, data, options ) {
 };
 
 module.exports = {
-    get: function ( url, options ) {
-        return xhr("GET", url, null, options);
+    get: function ( url, data, options ) {
+        return xhr("GET", url + (data ? "?" + params(data) : ""), null, options);
     },
 
     put: function ( url, data, options ) {
@@ -85,5 +99,7 @@ module.exports = {
         return xhr("DELETE", url, null, options);
     },
 
-    xhr: xhr
+    xhr: xhr,
+
+    params: params
 };

@@ -1,0 +1,58 @@
+@import "_variables";
+
+// this file overrides the styles for the react-select input component to match the
+// viki theme.
+
+.Select {
+
+}
+
+.Select-control {
+    border-radius: 0; // reset
+    padding: 8px 52px 8px 8px;
+    cursor: text; // reset
+
+    // keep in sync with form.scss -> input
+    border-color: $input-border-color lighten($input-border-color, 5%) lighten($input-border-color, 5%);
+
+    &:hover {
+        // keep in sync with form.scss -> input:hover
+        border-color: darken($input-border-color, 15%) darken($input-border-color, 10%) darken($input-border-color, 10%);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.is-open {
+
+    & > .Select-control {
+        // keep in sync with form.scss -> input:focus
+        border-color: $input-border-color--focused;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.Select-menu {
+    border-radius: 0; // reset
+}
+
+.Select-placeholder {
+    padding: 8px; // reset
+}
+
+.Select-option {
+
+    padding: 8px; // reset
+
+    &.is-focused {
+        background-color: #0088cc;
+        color: #fefefe;
+    }
+
+    &:last-child {
+        border-radius: 0; // reset
+    }
+}
+
+.Select-item {
+
+}
