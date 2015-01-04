@@ -1,9 +1,8 @@
 var React = require('react');
-require('react/addons');
 
 var Icon = require('./Icon').Icon;
 
-var cx = React.addons.classSet;
+var classNames = require('../../util/classNames');
 
 var Tab = React.createClass({
 
@@ -21,7 +20,7 @@ var Tab = React.createClass({
 
     render: function () {
 
-        var className = cx({
+        var className = classNames({
             tab: true,
             active: this.props.active
         });
@@ -51,7 +50,7 @@ var TabPane = React.createClass({
 
     render: function () {
 
-        var className = cx({
+        var className = classNames({
             "tab-pane": true,
             "body": true,
             "active": this.props.active

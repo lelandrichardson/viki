@@ -1,5 +1,5 @@
-var React = require('react/addons');
-var cs = React.addons.classSet;
+var React = require('react');
+var classNames = require('../../util/classNames');
 
 function createIcon ( type ) {
     var iconType = type;
@@ -21,7 +21,7 @@ function createIcon ( type ) {
             classes['fa-stack-' + this.props.stack] = this.props.stack;
             classes['fa-align-' + this.props.align] = this.props.align;
 
-            var className = cs(classes) + " " + (this.props.className || '');
+            var className = classNames(this.props.className, classes);
 
             return (
                 <i {...this.props} className={className}>{this.props.children}</i>
@@ -32,12 +32,7 @@ function createIcon ( type ) {
 
 var IconStack = React.createClass({
     render: function () {
-        var classes = {
-            'fa-stack': true
-        };
-        classes['fa-' + this.props.size] = this.props.size;
-
-        var className = cs(classes) + " " + (this.props.className || '');
+        var className = classNames('fa-stack', this.props.className, this.props.size ? 'fa-' + this.props.size : '');
         return (
             <span {...this.props} className={className}>{this.props.children}</span>
         );
@@ -46,10 +41,7 @@ var IconStack = React.createClass({
 
 var Ul = React.createClass({
     render: function () {
-        var classes = {
-            'fa-ul': true
-        };
-        var className = cs(classes) + " " + (this.props.className || '');
+        var className = classNames(this.props.className, 'fa-ul', classes);
 
         return this.transferPropsTo(
             <ul {...this.props} className={className}>{this.props.children}</ul>
@@ -63,7 +55,7 @@ var Animate = React.createClass({
     getInitialState: function () {
         return {
             childCount: 0,
-            child: (dom.span({}, null))
+            child: (<span/>)
         };
     },
     componentWillMount: function () {

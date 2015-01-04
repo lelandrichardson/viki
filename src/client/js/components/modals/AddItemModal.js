@@ -15,7 +15,7 @@ var ItemActions = require('../../actions/ItemActions');
 
 // Components
 var ImageChooser = require('../shared/ImageChooser');
-var Select = require('../shared/Select');
+var PageChooser = require('../shared/PageChooser');
 
 var AddItemModal = React.createClass({
 
@@ -71,21 +71,6 @@ var AddItemModal = React.createClass({
         });
         e.preventDefault();
     },
-
-    linkToAsyncOptions: function ( input, callback ) {
-        $http.get('/api/page/list', { q: input }).then(function ( res ) {
-            var results = res.results.map(function ( page ) {
-                return {
-                    value: page._id,
-                    label: page.title
-                };
-            });
-            callback(null, {
-                options: results
-            });
-        });
-    },
-
     renderModal: function () {
 
         var title = this.props.editing ? "Edit Item" : "Add Item";
@@ -117,8 +102,8 @@ var AddItemModal = React.createClass({
                     <div>Image:</div>
                     <ImageChooser valueLink={this.linkState('image')} />
 
-                    <div>Select:</div>
-                    <Select valueLink={this.linkState('linkTo')} asyncOptions={this.linkToAsyncOptions} />
+                    <div>Links to Page: {JSON.stringify(this.state.linkTo)}</div>
+                    <PageChooser valueLink={this.linkState('linkTo')} bindTo="id" />
                 </div>
                 <div className="modal-footer">{buttons}</div>
             </form>

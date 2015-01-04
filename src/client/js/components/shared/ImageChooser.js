@@ -42,7 +42,7 @@ var ImageChooser = React.createClass({
         var imageDetails = image && (
                 <div>
                     <div>
-                        <b>File:</b> {image.id + image.type}
+                        <b>File:</b> {image.id + image.ext}
                     </div>
                     <div>
                         <b>Size:</b> {[image.width, "px x ", image.height, "px"].join("")}

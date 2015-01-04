@@ -10,9 +10,10 @@ var ItemSchema = new VikiSchema({
 
     image: ImageSchema,
 
-	width: Number,
-
-	height: Number,
+	linkTo: {
+        type: String,
+        ref: 'Page'
+    },
 
 	creator: {
 		type: String,

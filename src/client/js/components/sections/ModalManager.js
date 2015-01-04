@@ -1,4 +1,5 @@
 var React = require('react');
+require('react/addons');
 var TransitionGroup = React.addons.TransitionGroup;
 
 // Stores
