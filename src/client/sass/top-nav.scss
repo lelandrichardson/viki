@@ -1,3 +1,5 @@
+@import "_zindex";
+
 .top-nav {
 	padding: .8em 0.4em;
 	
@@ -6,6 +8,12 @@
 	transition: border-color 0.4s ease-in-out, 
 				background-color 0.2s ease-in-out, 
 				opacity 0.4s ease-in-out;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $zindex-top-nav;
 
 	&:hover {
 		border-color:rgba(255,255,255,0.2);

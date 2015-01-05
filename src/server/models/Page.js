@@ -16,6 +16,11 @@ var PageSchema = new VikiSchema({
 
     image: ImageSchema,
 
+    allowDistortion: Boolean,
+    allowScaling: Boolean,
+    allowScrollX: Boolean,
+    allowScrollY: Boolean,
+
     items: [{
         type: String,
         ref: 'Item'

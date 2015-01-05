@@ -32,6 +32,7 @@
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
     "react": "^0.12.0",
+    "react-draggable": "^0.4.0",
     "react-flux": "latest",
     "react-router": "^0.11.6",
     "react-select": "^0.2.10",

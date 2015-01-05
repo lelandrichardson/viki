@@ -7,10 +7,13 @@
       <w>clearfix</w>
       <w>mixins</w>
       <w>mousedown</w>
+      <w>mousemove</w>
       <w>nbsp</w>
       <w>noresults</w>
       <w>unfocus</w>
       <w>unmount</w>
+      <w>unselectable</w>
+      <w>zindex</w>
     </words>
   </dictionary>
 </component>

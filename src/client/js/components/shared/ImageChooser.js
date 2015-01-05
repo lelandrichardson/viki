@@ -1,5 +1,7 @@
 var React = require('react');
 
+var classNames = require('../../util/classNames');
+
 // Components
 var Image = require('./Image');
 var ImageUpload = require('./ImageUpload');
@@ -61,8 +63,10 @@ var ImageChooser = React.createClass({
             }} />
         );
 
+        var className = classNames("mb", this.props.className);
+
         return (
-            <div className="mb">
+            <div className={className}>
                 <div className="media mr10">
                     {preview}
                 </div>

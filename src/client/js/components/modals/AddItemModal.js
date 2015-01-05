@@ -16,11 +16,23 @@ var ItemActions = require('../../actions/ItemActions');
 // Components
 var ImageChooser = require('../shared/ImageChooser');
 var PageChooser = require('../shared/PageChooser');
+var Select = require('../shared/Select');
+var NumberInput = require('../shared/NumberInput');
+
+var ITEM_TYPES = [
+    { value: "shape", label: "Shape" },
+    { value: "image", label: "Image" }
+];
 
 var AddItemModal = React.createClass({
 
     _emptyState: {
         text: '',
+        itemType: 'shape',
+        sizeWidth: 100,
+        sizeHeight: 100,
+        positionX: 100,
+        positionY: 100,
         linkTo: null,
         image: null
     },
@@ -41,6 +53,15 @@ var AddItemModal = React.createClass({
         return Object.assign({}, this._emptyState, this.props.item || {});
     },
 
+    itemFromState: function () {
+        return {
+            pageId: this.state.pageId,
+            text: this.state.text,
+            image: this.state.image,
+            linkTo: this.state.linkTo
+        };
+    },
+
     getStateFromStores: function () {
         return {
             pageId: PageStore.get('current')._id
@@ -52,25 +73,16 @@ var AddItemModal = React.createClass({
     },
 
     handleAdd: function ( e ) {
-        ItemActions.create({
-            pageId: this.state.pageId,
-            text: this.state.text,
-            image: this.state.image,
-            linkTo: this.state.linkTo
-        });
+        ItemActions.create(this.itemFromState());
         this.setState(this._emptyState);
         e.preventDefault();
     },
 
     handleSave: function ( e ) {
-        ItemActions.update(this.props.item._id, {
-            pageId: this.state.pageId,
-            text: this.state.text,
-            image: this.state.image,
-            linkTo: this.state.linkTo
-        });
+        ItemActions.update(this.props.item._id, this.itemFromState());
         e.preventDefault();
     },
+
     renderModal: function () {
 
         var title = this.props.editing ? "Edit Item" : "Add Item";
@@ -96,11 +108,17 @@ var AddItemModal = React.createClass({
                 <div className="modal-body">
                     <div className="mb20">Page Id: {this.state.pageId}</div>
 
+                    <div>Type:</div>
+                    <Select className="mb20" valueLink={this.linkState('itemType')} options={ITEM_TYPES} />
+
+                    <div>Width:</div>
+                    <NumberInput className="mb20" valueLink={this.linkState('sizeWidth')} />
+
                     <div>Text:</div>
-                    <input type="text" ref="text" valueLink={this.linkState('text')} />
+                    <input className="mb20" type="text" ref="text" valueLink={this.linkState('text')} />
 
                     <div>Image:</div>
-                    <ImageChooser valueLink={this.linkState('image')} />
+                    <ImageChooser className="mb20" valueLink={this.linkState('image')} />
 
                     <div>Links to Page: {JSON.stringify(this.state.linkTo)}</div>
                     <PageChooser valueLink={this.linkState('linkTo')} bindTo="id" />

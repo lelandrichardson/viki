@@ -8,8 +8,9 @@ var PageStore = require('../../stores/PageStore');
 var ItemStore = require('../../stores/ItemStore');
 
 // Components
-var SubItem = require('../items/SubItem');
-var FullScreenItem = require('../items/FullScreenItem');
+var PageItem = require('../items/PageItem');
+var PageImage = require('../items/PageImage');
+
 
 var Page = React.createClass({
 
@@ -45,18 +46,17 @@ var Page = React.createClass({
 
         var items = this.state.items.map(function ( item, i ) {
             return (
-                <SubItem key={i} item={item} />
+                <PageItem key={i} item={item} />
             );
         });
 
         //var mainItem = this.state.selected && <FullScreenItem item={this.state.selected} />;
-
+        // <h1 className="txt-large">{this.state.page.title}</h1>
         return (
             <div className="main-window">
-                <h1 className="txt-large">{this.state.page.title}</h1>
-                <div className="sub-items mt20">
-					{items}
-                </div>
+                <PageImage page={this.state.page}>
+                    {items}
+                </PageImage>
             </div>
         );
     }

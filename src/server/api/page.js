@@ -8,14 +8,18 @@ var pages = express.Router();
 
 pages.get('/list', function ( req, res ) {
 
+    var q = req.param('q');
     var query = {
         start: req.getInt('start') || 0,
         limit: req.getInt('limit') || 10,
-        sort: 'title',
-        find:  {
-            title: queryToRegex(req.param('q'))
-        }
+        sort: 'title'
     };
+
+    if (q) {
+        query.find = {
+            title: queryToRegex(q)
+        };
+    }
 
     Page.list(query, function ( err, count, results ) {
         if (err) {

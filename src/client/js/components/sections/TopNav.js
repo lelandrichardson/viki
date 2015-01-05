@@ -40,8 +40,8 @@ var TopNav = React.createClass({
         function cogWheel () {
             return (
                 <li key="cogwheel" className="inline">
-                    <a className="nav-btn">
-                        <Icon type="cog" onClick={this.cogClick} />
+                    <a className="nav-btn" onClick={this.cogClick}>
+                        <Icon type="cog" />
                     </a>
                 </li>
             );

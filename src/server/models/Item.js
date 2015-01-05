@@ -6,6 +6,18 @@ var ItemSchema = new VikiSchema({
 
     pageId: String,
 
+    itemType: String,
+
+    position: {
+        x: Number,
+        y: Number
+    },
+
+    size: {
+        width: Number,
+        height: Number
+    },
+
 	text: String,
 
     image: ImageSchema,

@@ -14,13 +14,23 @@ var PageActions = require('../../actions/PageActions');
 var { VerticalTabs, Tab, TabPane } = require('../shared/VerticalTabs');
 var ImageChooser = require('../shared/ImageChooser');
 var Select = require('../shared/Select');
+var { Radio, RadioGroup, YesNo } = require('../shared/RadioGroup');
+
+// 1. Allow Distortion? Yes / (No)
+// 2. Image Size? Original / (Best Fit)
+// 3. Width can exceed Screen Width? Yes / (No)
+// 4. Height can exceed Screen Height? (Yes) / No
 
 var AddPageModal = React.createClass({
 
     _emptyState: {
         text: '',
         title: '',
-        image: null
+        image: null,
+        allowDistortion: false,
+        allowScaling: true,
+        allowScrollX: false,
+        allowScrollY: true
     },
 
     propTypes: {
@@ -52,22 +62,26 @@ var AddPageModal = React.createClass({
         }
     },
 
-    handleAdd: function ( e ) {
-        PageActions.create({
+    pageFromState: function () {
+        return {
             text: this.state.text,
             title: this.state.title,
-            image: this.state.image
-        });
+            image: this.state.image,
+            allowDistortion: this.state.allowDistortion,
+            allowScaling: this.state.allowScaling,
+            allowScrollX: this.state.allowScrollX,
+            allowScrollY: this.state.allowScrollY
+        };
+    },
+
+    handleAdd: function ( e ) {
+        PageActions.create(this.pageFromState());
         this.setState(this._emptyState);
         e.preventDefault();
     },
 
     handleSave: function ( e ) {
-        PageActions.update(this.props.page._id, {
-            text: this.state.text,
-            title: this.state.title,
-            image: this.state.image
-        });
+        PageActions.update(this.props.page._id, this.pageFromState());
         e.preventDefault();
     },
 
@@ -103,10 +117,28 @@ var AddPageModal = React.createClass({
                             <input type="text" ref="text" className="mb20" valueLink={this.linkState('text')} />
 
                             <div>Image:</div>
-                            <ImageChooser valueLink={this.linkState('image')} />
+                            <ImageChooser className="mb20" valueLink={this.linkState('image')} />
 
-                            <div>Image:</div>
-                            <ImageChooser valueLink={this.linkState('image')} />
+                            <div>
+                                Allow Distortion:
+                                <YesNo className="inline" name="allowDistortion" valueLink={this.linkState('allowDistortion')} />
+                            </div>
+
+                            <div>
+                                Allow Scaling:
+                                <YesNo className="inline" name="allowScaling" valueLink={this.linkState('allowScaling')} />
+                            </div>
+
+                            <div>
+                                Allow Scroll X:
+                                <YesNo className="inline" name="allowScrollX" valueLink={this.linkState('allowScrollX')} />
+                            </div>
+
+                            <div>
+                                Allow Scroll Y:
+                                <YesNo className="inline" name="allowScrollY" valueLink={this.linkState('allowScrollY')} />
+                            </div>
+
                         </TabPane>
                         <TabPane icon="cog">
                             <div>
