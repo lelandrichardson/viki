@@ -1,10 +1,8 @@
-var React = require('react');
+var React = require('react/addons');
 var ModalMixin = require('../../mixins/ModalMixin');
 var Eventable = require('../../mixins/Eventable');
 var AuthActions = require('../../actions/AuthActions');
 var SessionStore = require('../../stores/SessionStore');
-
-require('react/addons');
 
 var LoginModal = React.createClass({
 

@@ -1,11 +1,17 @@
 var React = require('react');
-var Icon = require('./../shared/Icon').Icon;
 
+// Actions
 var TopNavActions = require('../../actions/TopNavActions');
 var AuthActions = require('../../actions/AuthActions');
 var AppActions = require('../../actions/AppActions');
 
+// Stores
 var SessionStore = require('../../stores/SessionStore');
+
+// Components
+var Icon = require('./../shared/Icon').Icon;
+var Tooltip = require('../shared/Tooltip').Tooltip;
+
 
 var TopNav = React.createClass({
 
@@ -40,9 +46,11 @@ var TopNav = React.createClass({
         function cogWheel () {
             return (
                 <li key="cogwheel" className="inline">
-                    <a className="nav-btn" onClick={this.cogClick}>
-                        <Icon type="cog" />
-                    </a>
+                    <Tooltip tip="Login">
+                        <a className="nav-btn" onClick={this.cogClick}>
+                            <Icon type="cog" />
+                        </a>
+                    </Tooltip>
                 </li>
             );
         },
@@ -58,9 +66,11 @@ var TopNav = React.createClass({
         function addItemButton () {
             return (
                 <li key="addItemBtn" className="inline right">
-                    <a className="nav-btn" onClick={this.addClick}>
-                        <Icon type="plus" />
-                    </a>
+                    <Tooltip tip="Add Item">
+                        <a className="nav-btn" onClick={this.addClick}>
+                            <Icon type="plus" />
+                        </a>
+                    </Tooltip>
                 </li>
             );
         },
@@ -74,9 +84,11 @@ var TopNav = React.createClass({
                 </li>
             ) : (
                 <li key="loginBtn" className="inline right">
-                    <a className="nav-btn" onClick={this.login}>
-                        Log In
-                    </a>
+                    <Tooltip tip="Login">
+                        <a className="nav-btn" onClick={this.login}>
+                            Log In
+                        </a>
+                    </Tooltip>
                 </li>
             );
         }

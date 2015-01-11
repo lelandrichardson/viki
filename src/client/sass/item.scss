@@ -21,7 +21,7 @@ $imgHeight:2001px;
 }
 
 .page-frame {
-
+    position: relative;
 }
 
 .page-items {
@@ -43,4 +43,10 @@ $imgHeight:2001px;
 	&:hover {
 		opacity: 0.8;
 	}
+
+    .handle-resize {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }

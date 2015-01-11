@@ -1,5 +1,7 @@
 var React = require('react');
 
+var dom = require('../../util/dom');
+
 // Components
 var Image = require('../shared/Image');
 
@@ -15,7 +17,7 @@ function pageToImageStyle ( page, screenWidth, screenHeight ) {
         allowScaling,
         allowScrollX,
         allowScrollY
-        } = page;
+    } = page;
 
     var aspectRatio = image.width / image.height;
 
@@ -100,34 +102,6 @@ function pageToImageStyle ( page, screenWidth, screenHeight ) {
     };
 }
 
-function getWindowSize () {
-    var w = window,
-        d = document,
-        e = d.documentElement,
-        g = document.body || d.getElementsByTagName('body')[0];
-
-    return {
-        screenWidth: w.innerWidth || e.clientWidth || g.clientWidth,
-        screenHeight: w.innerHeight || e.clientHeight || g.clientHeight
-    };
-}
-
-function listenToEvent ( el, event, handler ) {
-    if (el.addEventListener) {
-        el.addEventListener(event, handler, false);
-    } else if (el.attachEvent) {
-        el.attachEvent("on" + event, handler);
-    }
-}
-
-function ignoreEvent ( el, event, handler ) {
-    if (el.removeEventListener) {
-        el.removeEventListener(event, handler, false);
-    } else if (el.detachEvent) {
-        el.detachEvent("on" + event, handler);
-    }
-}
-
 function position ( e ) {
     // touch event
     if (e.targetTouches && (e.targetTouches.length >= 1)) {
@@ -151,7 +125,7 @@ var PageImage = React.createClass({
     },
 
     getInitialState: function () {
-        var w = getWindowSize();
+        var w = dom.windowSize();
         var style = pageToImageStyle(this.props.page, w.screenWidth, w.screenHeight);
         return {
             dragging: false,
@@ -165,7 +139,7 @@ var PageImage = React.createClass({
     },
 
     handleWindowResize: function () {
-        this.setState(getWindowSize());
+        this.setState(dom.windowSize());
     },
 
     handleStart: function ( e ) {
@@ -218,11 +192,11 @@ var PageImage = React.createClass({
     },
 
     componentWillMount: function () {
-        listenToEvent(window, "resize", this.handleWindowResize);
+        dom.listenToEvent(window, "resize", this.handleWindowResize);
     },
 
     componentWillUnmount: function () {
-        ignoreEvent(window, "resize", this.handleWindowResize);
+        dom.ignoreEvent(window, "resize", this.handleWindowResize);
     },
 
     render: function () {
@@ -245,12 +219,6 @@ var PageImage = React.createClass({
                 transform: `translateY(${-this.state.offset.y}px)`
             });
         }
-
-        /*
-
-
-
-         */
 
         return (
             <div className="page-lens unselectable">

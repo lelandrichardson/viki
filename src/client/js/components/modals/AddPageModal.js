@@ -1,5 +1,4 @@
-var React = require('react');
-require('react/addons');
+var React = require('react/addons');
 
 // Stores
 var PageStore = require('../../stores/PageStore');

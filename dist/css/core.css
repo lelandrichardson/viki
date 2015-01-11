@@ -123,6 +123,64 @@ body {
     color: #666;
     background: none; }
 
+.cp-swatch {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease-in-out; }
+  .cp-swatch:hover {
+    border-color: rgba(0, 0, 0, 0.6); }
+
+.cp-alpha-indicator {
+  float: right;
+  padding: 6px 0 0 0;
+  width: 30px;
+  text-align: center;
+  font-size: 0.8em; }
+
+.cp-saturation-spectrum, .cp-hue-spectrum {
+  position: relative;
+  display: inline-block; }
+
+.cp-saturation-white, .cp-saturation-black {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+.cp-saturation-white {
+  background: linear-gradient(to right, #fff, rgba(204, 154, 129, 0)); }
+
+.cp-saturation-black {
+  background: linear-gradient(to top, #000, rgba(204, 154, 129, 0)); }
+
+.cp-saturation-spectrum {
+  cursor: pointer; }
+  .cp-saturation-spectrum .cp-saturation-drag {
+    display: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .cp-saturation-spectrum .cp-saturation-drag .inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+      border-radius: 10px; }
+
+.cp-hue-spectrum {
+  background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  cursor: pointer; }
+  .cp-hue-spectrum .cp-hue-drag {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    border: 1px solid black; }
+
 input[type=text], input[type=password], textarea {
   width: 100%;
   padding: 8px;
@@ -172,6 +230,9 @@ textarea {
 .page-img {
   z-index: 70; }
 
+.page-frame {
+  position: relative; }
+
 .page-items {
   position: relative;
   width: 100%;
@@ -187,6 +248,10 @@ textarea {
   opacity: 0.2; }
   .page-item:hover {
     opacity: 0.8; }
+  .page-item .handle-resize {
+    position: absolute;
+    right: 0;
+    bottom: 0; }
 
 /* -------------------------------------------------------------
   Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
@@ -436,6 +501,152 @@ textarea {
   .Select-option:last-child {
     border-radius: 0; }
 
+
+/* -------------------------------------------------------------
+  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
+  List of CSS3 Sass Mixins File to be @imported and @included as you need
+  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
+  ENDING css files
+  note: All CSS3 Properties are being supported by Safari 5
+  more info: http://www.findmebyip.com/litmus/#css3-properties
+  Mixins available:
+    -   css3-prefix             - arguments: Property, Value
+    -   background-gradient     - arguments: Start Color: #3C3C3C, End Color: #999999
+    -   background-radial       - arguments: Start Color: #FFFFFF, Start position: 0%, End Color: #000000, End position: 100%
+    -   background-size         - arguments: Width: 100%, Height: 100%
+    -   background-opacity      - arguments: Color: #000, Opacity: .85
+    -   border-radius           - arguments: Radius: 5px
+    -   border-radius-separate  - arguments: Top Left: 5px, Top Left: 5px, Bottom Left: 5px, Bottom Right: 5px
+    -   box                     - arguments: Orientation: horizontal, Pack: center, Align: center
+    -   box-rgba                - arguments: R: 60, G: 3, B: 12, Opacity: 0.23, Color: #3C3C3C
+    -   box-shadow              - arguments: X: 2px, Y: 2px, Blur: 5px, Color: rgba(0,0,0,.4)
+    -   box-sizing              - arguments: Type: border-box
+    -   columns                 - arguments: Count: 3, Gap: 10
+    -   double-borders          - arguments: Color One: #3C3C3C, Color Two: #999999, Radius: 0
+    -   flex                    - arguments: Value: 1
+    -   flip                    - arguments: ScaleX: -1
+    -   font-face               - arguments: Font Family: myFont, Eot File Src: myFont.eot, Woff File Src: myFont.woff, Ttf File Src: myFont.ttf
+    -   opacity                 - arguments: Opacity: 0.5
+    -   outline radius          - arguments: Radius: 5px
+    -   resize                  - arguments: Direction: both
+    -   rotate                  - arguments: Degree: 0, M11: 0, M12: 0, M21: 0, M22: 0
+    CSS Matrix Rotation Calculator http://www.boogdesign.com/examples/transforms/matrix-calculator.html
+    -   text-shadow             - arguments: X: 2px, Y: 2px, Blur: 5px, Color: rgba(0,0,0,.4)
+    -   transform               - arguments: Parameters: null
+    -   transform-style         - arguments: Style: preserve-3d
+    -   transition              - arguments: What: all, Length: 1s, Easing: ease-in-out
+    -   triple-borders          - arguments: Color One: #3C3C3C, Color Two: #999999, Color Three: #000000, Radius: 0
+    -   keyframes               - arguments: Animation name
+                                - content:   Animation css
+    -   animation               - arguments: name duration timing-function delay iteration-count direction fill-mode play-state
+                                             (http://www.w3schools.com/cssref/css3_pr_animation.asp)
+------------------------------------------------------------- */
+/* ADDS A BROWSER PREFIX TO THE PROPERTY */
+/* BACKGROUND GRADIENT */
+/* BACKGROUND RADIAL */
+/* BACKGROUND SIZE */
+/* BACKGROUND COLOR OPACITY */
+/* BORDER RADIUS */
+/* BOX */
+/* BOX RGBA */
+/* BOX SHADOW */
+/* BOX SIZING */
+/* COLUMNS */
+/* DOUBLE BORDERS */
+/* FLEX */
+/* FLIP */
+/* FONT FACE */
+/* OPACITY */
+/* OUTLINE RADIUS */
+/* RESIZE */
+/* ROTATE*/
+/* TRANSLATE*/
+/* TEXT SHADOW */
+/* TRANSFORM  */
+/* TRANSFORM STYLE */
+/* TRANSITION */
+/* TRIPLE BORDERS */
+/* KEYFRAMES */
+/* ANIMATION */
+.slider {
+  height: 3px;
+  position: relative;
+  background: #cacaca;
+  margin-top: 6px; }
+
+.slider-bar {
+  display: block;
+  height: 100%;
+  background-color: #0b44a3;
+  position: relative;
+  overflow: hidden; }
+
+.slider-handle {
+  display: block;
+  position: absolute;
+  float: left;
+  background-color: #f9f9f9;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#eeeeee));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #eeeeee);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #eeeeee);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #eeeeee);
+  background-image: -o-linear-gradient(top, #f9f9f9, #eeeeee);
+  background-image: linear-gradient(top, #f9f9f9, #eeeeee);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f9f9f9', endColorStr='#eeeeee');
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  margin: -7.5px 0 -6px;
+  border: 1px solid #999999; }
+  .slider-handle:hover {
+    border-color: #666666; }
+  .slider-handle:active {
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#e1e1e1));
+    background-image: -webkit-linear-gradient(top, #ececec, #e1e1e1);
+    background-image: -moz-linear-gradient(top, #ececec, #e1e1e1);
+    background-image: -ms-linear-gradient(top, #ececec, #e1e1e1);
+    background-image: -o-linear-gradient(top, #ececec, #e1e1e1);
+    background-image: linear-gradient(top, #ececec, #e1e1e1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ececec', endColorStr='#e1e1e1'); }
+
+.tooltip {
+  position: absolute;
+  padding: 6px;
+  border-radius: 2px;
+  max-width: 300px;
+  font-size: 0.8em;
+  z-index: 110; }
+  .tooltip .arrow {
+    width: 0;
+    height: 0;
+    position: absolute;
+    border: 7px solid transparent; }
+  .tooltip.black {
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff; }
+    .tooltip.black.top .arrow {
+      border-top-color: rgba(0, 0, 0, 0.95); }
+    .tooltip.black.right .arrow {
+      border-right-color: rgba(0, 0, 0, 0.95); }
+    .tooltip.black.bottom .arrow {
+      border-bottom-color: rgba(0, 0, 0, 0.95); }
+    .tooltip.black.left .arrow {
+      border-left-color: rgba(0, 0, 0, 0.95); }
+  .tooltip.white {
+    background: rgba(255, 255, 255, 0.95);
+    color: #222;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.5); }
+    .tooltip.white.top .arrow {
+      border-top-color: rgba(255, 255, 255, 0.95); }
+    .tooltip.white.right .arrow {
+      border-right-color: rgba(255, 255, 255, 0.95); }
+    .tooltip.white.bottom .arrow {
+      border-bottom-color: rgba(255, 255, 255, 0.95); }
+    .tooltip.white.left .arrow {
+      border-left-color: rgba(255, 255, 255, 0.95); }
 
 .top-nav {
   padding: 0.8em 0.4em;

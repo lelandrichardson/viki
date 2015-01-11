@@ -1,5 +1,4 @@
-var React = require('react');
-require('react/addons');
+var React = require('react/addons');
 
 var ModalMixin = require('../../mixins/ModalMixin')
 var $http = require('../../util/$http');
@@ -18,6 +17,8 @@ var ImageChooser = require('../shared/ImageChooser');
 var PageChooser = require('../shared/PageChooser');
 var Select = require('../shared/Select');
 var NumberInput = require('../shared/NumberInput');
+var { ColorPicker, ColorInput} = require('../shared/ColorInput');
+var Slider = require('../shared/Slider');
 
 var ITEM_TYPES = [
     { value: "shape", label: "Shape" },
@@ -29,6 +30,8 @@ var AddItemModal = React.createClass({
     _emptyState: {
         text: '',
         itemType: 'shape',
+        backgroundColor: '#ffffff',
+        opacity: 0.5,
         sizeWidth: 100,
         sizeHeight: 100,
         positionX: 100,
@@ -83,6 +86,12 @@ var AddItemModal = React.createClass({
         e.preventDefault();
     },
 
+    handleColorChange: function (color) {
+        this.setState({
+            backgroundColor: color
+        });
+    },
+
     renderModal: function () {
 
         var title = this.props.editing ? "Edit Item" : "Add Item";
@@ -111,8 +120,15 @@ var AddItemModal = React.createClass({
                     <div>Type:</div>
                     <Select className="mb20" valueLink={this.linkState('itemType')} options={ITEM_TYPES} />
 
+                    <div>Background Color:</div>
+                    <ColorInput
+                        value={this.state.backgroundColor}
+                        onChange={this.handleColorChange}
+                    />
+
                     <div>Width:</div>
                     <NumberInput className="mb20" valueLink={this.linkState('sizeWidth')} />
+
 
                     <div>Text:</div>
                     <input className="mb20" type="text" ref="text" valueLink={this.linkState('text')} />

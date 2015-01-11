@@ -2,6 +2,7 @@ var React = require('react');
 var TopNav = require('./sections/TopNav');
 var ModalManager = require('./sections/ModalManager');
 var RouteHandler = require('react-router').RouteHandler;
+var TooltipManager = require('./shared/Tooltip').TooltipManager;
 
 var VikiApp = React.createClass({
 
@@ -11,6 +12,7 @@ var VikiApp = React.createClass({
                 <TopNav />
                 <ModalManager />
                 <RouteHandler />
+                <TooltipManager />
             </div>
         );
     }

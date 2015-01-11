@@ -1,0 +1,72 @@
+@import "_zindex";
+@import "_variables";
+
+$tooltip-black-bg-color: rgba(0, 0, 0, 0.95);
+$tooltip-black-fg-color: #fff;
+
+$tooltip-white-bg-color: rgba(255, 255, 255, 0.95);
+$tooltip-white-fg-color: #222;
+
+$tooltip-arrow-size: 7px;
+
+$tooltip-padding: 6px;
+
+$tooltip-max-width: 300px;
+
+$tooltip-font-size: 0.8em;
+
+$tooltip-border-radius: 2px;
+
+@mixin arrows($color) {
+    &.top {
+        .arrow {
+            border-top-color: $color;
+        }
+    }
+    &.right {
+        .arrow {
+            border-right-color: $color;
+        }
+    }
+    &.bottom {
+        .arrow {
+            border-bottom-color: $color;
+        }
+    }
+    &.left {
+        .arrow {
+            border-left-color: $color;
+        }
+    }
+}
+
+.tooltip {
+    position: absolute;
+    padding: $tooltip-padding;
+    border-radius: $tooltip-border-radius;
+    max-width: $tooltip-max-width;
+    font-size: $tooltip-font-size;
+    z-index: $zindex-tooltip;
+
+    .arrow {
+        width: 0;
+        height: 0;
+        position: absolute;
+        border: $tooltip-arrow-size solid transparent;
+    }
+
+    &.black {
+        background: $tooltip-black-bg-color;
+        color: $tooltip-black-fg-color;
+
+        @include arrows($tooltip-black-bg-color);
+    }
+
+    &.white {
+        background: $tooltip-white-bg-color;
+        color: $tooltip-white-fg-color;
+        box-shadow: 0 0 16px rgba(0,0,0,0.5);
+
+        @include arrows($tooltip-white-bg-color);
+    }
+}

@@ -15,8 +15,8 @@
             var data = request.hydrate();
 
             for (var store in data) { %>
-            Hydrate("<%= store %>", <%- JSON.stringify(data[store]) %>);
-            <% } %>
+            Hydrate("<%= store %>", <%- JSON.stringify(data[store]) %>);<%
+            } %>
         </script>
         <script src="/js/main.js"></script>
     </body>

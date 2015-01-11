@@ -5,11 +5,14 @@
       <w>autosize</w>
       <w>autosized</w>
       <w>clearfix</w>
+      <w>colorpicker</w>
+      <w>eventable</w>
       <w>mixins</w>
       <w>mousedown</w>
       <w>mousemove</w>
       <w>nbsp</w>
       <w>noresults</w>
+      <w>reactid</w>
       <w>unfocus</w>
       <w>unmount</w>
       <w>unselectable</w>

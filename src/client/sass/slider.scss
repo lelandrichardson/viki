@@ -1,0 +1,43 @@
+@import "_variables";
+@import "_mixins";
+
+$slider-handle-size: 12px;
+$slider-bar-size: 3px;
+$slider-handle-border-color: #999999;
+$slider-handle-background-top: #f9f9f9;
+$slider-handle-background-bottom: #eeeeee;
+
+.slider {
+    height: $slider-bar-size;
+    position: relative;
+    background: #cacaca;
+    margin-top: 6px;
+}
+
+.slider-bar {
+    display: block;
+    height: 100%;
+    background-color: #0b44a3;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-handle {
+    display: block;
+    position: absolute;
+    float: left;
+    @include background-gradient($slider-handle-background-top, $slider-handle-background-bottom);
+    content: '';
+    width: $slider-handle-size;
+    height: $slider-handle-size;
+    border-radius: $slider-handle-size;
+    margin: -($slider-handle-size / 2 + $slider-bar-size / 2) 0 0 -($slider-handle-size / 2);
+    border: 1px solid $slider-handle-border-color;
+
+    &:hover {
+        border-color: darken($slider-handle-border-color, 20%);
+    }
+    &:active {
+        @include background-gradient(darken($slider-handle-background-top, 5%), darken($slider-handle-background-bottom, 5%));
+    }
+}
