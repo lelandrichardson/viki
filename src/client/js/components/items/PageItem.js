@@ -27,7 +27,11 @@ var DEFAULT_ITEM_POSITION = {
 }
 
 function itemStyle ( item ) {
-    var _style = {},
+    var _wrapper = {},
+        _style = {},
+        wrapper = function ( styles ) {
+            Object.assign(_wrapper, styles);
+        },
         style = function ( styles ) {
             Object.assign(_style, styles);
         };
@@ -38,7 +42,7 @@ function itemStyle ( item ) {
 
     size = size || DEFAULT_ITEM_SIZE;
 
-    style({
+    wrapper({
         top: `${position.y}%`,
         left: `${position.x}%`,
         marginLeft: `${-size.width / 2}px`,
@@ -47,12 +51,16 @@ function itemStyle ( item ) {
         height: size.height
     });
 
+    style({
+        width: size.width,
+        height: size.height,
+        backgroundColor: item.backgroundColor,
+        borderRadius: item.borderRadius
+    });
+
     return {
-        wrapper: _style,
-        item: {
-            width: size.width,
-            height: size.height
-        }
+        wrapper: _wrapper,
+        item: _style
     };
 }
 

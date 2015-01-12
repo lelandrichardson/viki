@@ -14,14 +14,9 @@ var Slider = React.createClass({
 
     propTypes: {
         /**
-         * The left-most value on the slider. Defaults to 0
+         * An array representing the allowed range of values.
          */
-        rangeStart: React.PropTypes.number,
-
-        /**
-         * The right-most value on the slider. Defaults to 1
-         */
-        rangeEnd: React.PropTypes.number,
+        range: React.PropTypes.array,
 
         /**
          * The color of the slider's bar, when not "filled in"
@@ -41,14 +36,48 @@ var Slider = React.createClass({
         /**
          * The width (in pixels) of the slider. If not provided, the bar will fill the width of it's container
          */
-        size: React.PropTypes.number
+        size: React.PropTypes.number,
+
+        /**
+         * The amount to round/increment the values by
+         */
+        step: React.PropTypes.number
     },
 
     getDefaultProps: function () {
         return {
-            rangeStart: 0,
-            rangeEnd: 1
+            range: [0, 1],
+            step: 0.1
         };
+    },
+
+    /**
+     * Since we don't want to pass around super long decimals everywhere, usually a step is passed in for the slider.
+     * This function will take the raw "new value", and return the clean one which is an integer multiple of the
+     * provided "step" prop.
+     * Additionally makes sure the value is within the rangeStart / rangeEnd parameters passed in.
+     * @link https://github.com/jquery/jquery-ui/blob/master/ui/slider.js#L534-L552
+     * @param val
+     * @returns {Number}
+     */
+    cleanValue: function ( val ) {
+        if (val <= this.props.range[0]) {
+            return this.props.range[0];
+        }
+        if (val >= this.props.range[1]) {
+            return this.props.range[1];
+        }
+        var step = this.props.step,
+            valModStep = (val - this.props.range[0]) % step,
+            alignValue = val - valModStep;
+
+        if (Math.abs(valModStep) * 2 >= step) {
+            alignValue += ( valModStep > 0 ) ? step : ( -step );
+        }
+
+        // Since JavaScript has problems with large floats, round
+        // the final value to 5 digits after the decimal point
+        return parseFloat(alignValue.toFixed(5));
     },
 
     handleMouseMove: function ( e, initialX, initialValue ) {
@@ -60,9 +89,9 @@ var Slider = React.createClass({
 
         var delta = newX - initialX;
 
-        var changeInValue = (delta / width) * (this.props.rangeEnd - this.props.rangeStart);
+        var changeInValue = (delta / width) * (this.props.range[1] - this.props.range[0]);
 
-        var newValue = Math.max(Math.min(initialValue + changeInValue, this.props.rangeEnd), this.props.rangeStart);
+        var newValue = this.cleanValue(initialValue + changeInValue);
 
         this.getValueLink().requestChange(newValue);
     },
@@ -88,14 +117,17 @@ var Slider = React.createClass({
 
         dom.listenToEvent(document, "mouseup", cancel);
         dom.listenToEvent(document, "touchend", cancel);
-
     },
 
     render: function () {
 
         var value = this.getValueLink().value;
 
-        var percent = (value - this.props.rangeStart) / (this.props.rangeEnd - this.props.rangeStart) * 100;
+        if (value === undefined) {
+            value = this.props.range[0];
+        }
+
+        var percent = (value - this.props.range[0]) / (this.props.range[1] - this.props.range[0]) * 100;
 
         var sliderStyle = {
             backgroundColor: this.props.barColor,

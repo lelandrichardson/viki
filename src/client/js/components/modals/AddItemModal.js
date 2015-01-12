@@ -36,6 +36,7 @@ var AddItemModal = React.createClass({
         text: '',
         itemType: 'shape',
         backgroundColor: '#ffffff',
+        borderRadius: 0,
         opacity: 0.5,
         sizeWidth: 100,
         sizeHeight: 100,
@@ -59,7 +60,7 @@ var AddItemModal = React.createClass({
     },
 
     getInitialState: function () {
-        return Object.assign({}, this._emptyState, this.props.item || {});
+        return merge(this._emptyState, this.props.item || {});
     },
 
     itemFromState: function () {
@@ -68,7 +69,8 @@ var AddItemModal = React.createClass({
             text: this.state.text,
             image: this.state.image,
             linkTo: this.state.linkTo,
-            backgroundColor: this.state.backgroundColor
+            backgroundColor: this.state.backgroundColor,
+            borderRadius: this.state.borderRadius
         };
     },
 
@@ -124,8 +126,8 @@ var AddItemModal = React.createClass({
                     <div>Background Color:</div>
                     <ColorInput valueLink={this.linkState('backgroundColor')} />
 
-                    <div>Width:</div>
-                    <NumberInput className="mb20" valueLink={this.linkState('sizeWidth')} />
+                    <div>Border Radius: {this.state.borderRadius}px</div>
+                    <Slider className="mb20" valueLink={this.linkState('borderRadius')} step={1} range={[0,12]} />
 
                     <div>Text:</div>
                     <input className="mb20" type="text" ref="text" valueLink={this.linkState('text')} />

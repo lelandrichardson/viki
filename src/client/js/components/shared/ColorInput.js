@@ -127,7 +127,7 @@ var ColorPicker = React.createClass({
                     saturationWidth={this.props.size}
                     saturationHeight={this.props.size} />
                 <div className="mb8">
-                    <Slider size={this.props.size} value={this.state.alpha} onChange={this.handleAlphaChange} />
+                    <Slider size={this.props.size} value={this.state.alpha} onChange={this.handleAlphaChange} step={0.05} />
                     <span className="cp-alpha-indicator">{this.state.alpha}</span>
                 </div>
                 <input style={{ padding: 3, width: this.props.size}} type="text" value={this.state.input || this.state.color} onChange={this.handleInputChange} />

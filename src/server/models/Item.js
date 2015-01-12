@@ -45,6 +45,14 @@ var ItemSchema = new VikiSchema({
 		ref: 'User'
     },
 
+
+
+    backgroundColor: String,
+    borderRadius: Number,
+    fontColor: String,
+    fontSize: Number,
+
+
     properties: {}
 });
 
