@@ -1,10 +1,18 @@
 var React = require('react');
+
+// Utilities
+var colorUtil = require('../../util/color');
+var classNames = require('../../util/classNames');
+
+// Mixins
+var ValueLinkMixin = require('../../mixins/ValueLinkMixin');
+
+// Components
 var Picker = require('react-color-picker');
 var Slider = require('./Slider');
-var classNames = require('../../util/classNames');
-var ValueLinkMixin = require('../../mixins/ValueLinkMixin');
 var Tooltip = require('./Tooltip').Tooltip;
-var colorUtil = require('../../util/color');
+
+var DEFAULT_COLOR = '#2e2f31';
 
 var Swatch = React.createClass({
 
@@ -26,19 +34,22 @@ var Swatch = React.createClass({
 
 var ColorPicker = React.createClass({
 
+    mixins: [
+        ValueLinkMixin()
+    ],
+
     propTypes: {
         size: React.PropTypes.number
     },
 
     getDefaultProps: function () {
         return {
-            color: '#2e2f31',
             size: 128
         };
     },
 
     getInitialState: function () {
-        return this.valueToState(this.props.color);
+        return this.valueToState(this.getValueLink().value);
     },
 
     handlePickerChange: function (color) {
@@ -67,21 +78,18 @@ var ColorPicker = React.createClass({
         this.setState({
             alpha: +(alpha.toFixed(2)),
             input: null
-        },this.update);
+        }, this.update);
     },
 
     valueToState: function (value) {
         var color, alpha;
 
         if (!value) {
-            color = '#ffffff';
+            color = DEFAULT_COLOR;
             alpha = 1;
         } else if (value[0] === '#') {
             color = value;
             alpha = 1;
-        } else if (value === 'transparent') {
-            color = '#000000';
-            alpha = 0;
         } else {
             var result = colorUtil.rgbaToHexAndAlpha(value);
 
@@ -97,21 +105,17 @@ var ColorPicker = React.createClass({
 
     valueFromState: function () {
         var { color, alpha } = this.state;
-        var result;
 
-        if (alpha == 0) {
-            result = 'transparent';
-        } else if (alpha == 1) {
-            result = color;
+        if (alpha == 1) {
+            return color;
         } else {
             var c = colorUtil.hexToRgb(color);
-            result = `rgba(${c.r},${c.g},${c.b},${alpha})`;
+            return `rgba(${c.r},${c.g},${c.b},${alpha})`;
         }
-        return result;
     },
 
     update: function () {
-        this.props.onChange(this.valueFromState());
+        this.getValueLink().requestChange(this.valueFromState());
     },
 
     render: function () {
@@ -141,17 +145,15 @@ var ColorInput = React.createClass({
 
     renderEditor: function () {
         return (
-            <ColorPicker color={this.getValueLink().value} onChange={this.getValueLink().requestChange} />
+            <ColorPicker value={this.getValueLink().value} onChange={this.getValueLink().requestChange} />
         );
     },
 
     render: function () {
         return (
-            <div>
-                <Tooltip render={this.renderEditor} mode="click" color="white">
-                    <Swatch color={this.getValueLink().value} />
-                </Tooltip>
-            </div>
+            <Tooltip render={this.renderEditor} mode="click" color="white">
+                <Swatch color={this.getValueLink().value} />
+            </Tooltip>
         );
     }
 });

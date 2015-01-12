@@ -3,6 +3,9 @@ var ValueLinkMixin = require('../../mixins/ValueLinkMixin');
 var classNames = require('../../util/classNames');
 var dom = require('../../util/dom');
 
+/**
+ * This is a basic slider component, built primarily for use as a single numeric input
+ */
 var Slider = React.createClass({
 
     mixins: [
@@ -10,12 +13,35 @@ var Slider = React.createClass({
     ],
 
     propTypes: {
+        /**
+         * The left-most value on the slider. Defaults to 0
+         */
         rangeStart: React.PropTypes.number,
+
+        /**
+         * The right-most value on the slider. Defaults to 1
+         */
         rangeEnd: React.PropTypes.number,
+
+        /**
+         * The color of the slider's bar, when not "filled in"
+         */
         barColor: React.PropTypes.string,
+
+        /**
+         * The color of the slider's bar when "filled in"
+         */
         barFillColor: React.PropTypes.string,
+
+        /**
+         * An optional class name to put on the slider's handle
+         */
         handleClass: React.PropTypes.string,
-        size: React.PropTypes.number,
+
+        /**
+         * The width (in pixels) of the slider. If not provided, the bar will fill the width of it's container
+         */
+        size: React.PropTypes.number
     },
 
     getDefaultProps: function () {

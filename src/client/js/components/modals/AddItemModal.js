@@ -1,7 +1,12 @@
 var React = require('react/addons');
 
-var ModalMixin = require('../../mixins/ModalMixin')
+// Utilities
 var $http = require('../../util/$http');
+var merge = require('deepmerge');
+
+// Mixins
+var ModalMixin = require('../../mixins/ModalMixin');
+var MergeMixin = require('../../mixins/MergeMixin');
 
 // Stores
 var PageStore = require('../../stores/PageStore');
@@ -42,6 +47,7 @@ var AddItemModal = React.createClass({
 
     mixins: [
         ModalMixin,
+        MergeMixin,
         React.addons.LinkedStateMixin,
         PageStore.mixin()
     ],
@@ -61,7 +67,8 @@ var AddItemModal = React.createClass({
             pageId: this.state.pageId,
             text: this.state.text,
             image: this.state.image,
-            linkTo: this.state.linkTo
+            linkTo: this.state.linkTo,
+            backgroundColor: this.state.backgroundColor
         };
     },
 
@@ -84,12 +91,6 @@ var AddItemModal = React.createClass({
     handleSave: function ( e ) {
         ItemActions.update(this.props.item._id, this.itemFromState());
         e.preventDefault();
-    },
-
-    handleColorChange: function (color) {
-        this.setState({
-            backgroundColor: color
-        });
     },
 
     renderModal: function () {
@@ -121,14 +122,10 @@ var AddItemModal = React.createClass({
                     <Select className="mb20" valueLink={this.linkState('itemType')} options={ITEM_TYPES} />
 
                     <div>Background Color:</div>
-                    <ColorInput
-                        value={this.state.backgroundColor}
-                        onChange={this.handleColorChange}
-                    />
+                    <ColorInput valueLink={this.linkState('backgroundColor')} />
 
                     <div>Width:</div>
                     <NumberInput className="mb20" valueLink={this.linkState('sizeWidth')} />
-
 
                     <div>Text:</div>
                     <input className="mb20" type="text" ref="text" valueLink={this.linkState('text')} />

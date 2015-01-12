@@ -216,7 +216,7 @@ var Tip = React.createClass({
         }
 
         var listeners = {};
-        switch (this.props.mode) {
+        switch ( this.props.mode ) {
             case "click":
                 break;
             case "hover":
@@ -236,14 +236,13 @@ var Tip = React.createClass({
     }
 });
 
-
 var TooltipManager = React.createClass({
 
     mixins: [
         Eventable
     ],
 
-    hideQueue: (function() {
+    hideQueue: (function () {
         var queue = {};
 
         return {
@@ -281,7 +280,7 @@ var TooltipManager = React.createClass({
         return () => {
             return (
                 <Tip {...data} key={data.id} />
-            )
+            );
         };
     },
 
@@ -315,7 +314,9 @@ var Tooltip = React.createClass({
         direction: React.PropTypes.string,
         margin: React.PropTypes.number,
         slide: React.PropTypes.number,
-        mode: React.PropTypes.oneOf(["click","hover"])
+        mode: React.PropTypes.oneOf(["click", "hover"])
+
+        //TODO: add lifecycle events like onShow and onHide
     },
 
     eventData: function () {
@@ -354,7 +355,7 @@ var Tooltip = React.createClass({
     render: function () {
 
         var listeners = {};
-        switch(this.props.mode) {
+        switch ( this.props.mode ) {
             case "click":
                 listeners.onClick = this.handleClick;
                 break;

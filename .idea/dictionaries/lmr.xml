@@ -6,6 +6,7 @@
       <w>autosized</w>
       <w>clearfix</w>
       <w>colorpicker</w>
+      <w>deepmerge</w>
       <w>eventable</w>
       <w>mixins</w>
       <w>mousedown</w>
@@ -16,6 +17,7 @@
       <w>unfocus</w>
       <w>unmount</w>
       <w>unselectable</w>
+      <w>viewport</w>
       <w>zindex</w>
     </words>
   </dictionary>

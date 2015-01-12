@@ -245,7 +245,7 @@ textarea {
   z-index: 80;
   position: relative;
   border: 1px dashed #fff;
-  opacity: 0.2; }
+  opacity: 0.5; }
   .page-item:hover {
     opacity: 0.8; }
   .page-item .handle-resize {

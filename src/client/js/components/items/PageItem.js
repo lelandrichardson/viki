@@ -15,6 +15,17 @@ var Link = require('react-router').Link;
 var Icon = require('../shared/Icon').Icon;
 var Draggable = require('../shared/Draggable');
 
+var MIN_ITEM_WIDTH = 30;
+var MIN_ITEM_HEIGHT = 30;
+var DEFAULT_ITEM_SIZE = {
+    width: 100,
+    height: 200
+};
+var DEFAULT_ITEM_POSITION = {
+    x: 50,
+    y: 50
+}
+
 function itemStyle ( item ) {
     var _style = {},
         style = function ( styles ) {
@@ -23,15 +34,9 @@ function itemStyle ( item ) {
 
     var { position, size } = item;
 
-    position = position || {
-        x: 40,
-        y: 50
-    };
+    position = position || DEFAULT_ITEM_POSITION;
 
-    size = size || {
-        width: 100,
-        height: 200
-    };
+    size = size || DEFAULT_ITEM_SIZE;
 
     style({
         top: `${position.y}%`,
@@ -68,10 +73,6 @@ var PageItem = React.createClass({
         AppActions.showModal("EDIT_ITEM", this.props.item);
     },
 
-    dragStart: function ( event, ui ) {
-        //console.log("drag start");
-    },
-
     componentWillReceiveProps: function () {
         this.refs.draggable.reset();
         this.setState({
@@ -102,26 +103,40 @@ var PageItem = React.createClass({
     },
 
     resize: function ( event, ui ) {
-        console.log(JSON.stringify(ui.position));
+        // we simply update the width/height in CSS until the resizing stops
         var dWidth = ui.position.dWidth,
-            dHeight = ui.position.dHeight;
+            dHeight = ui.position.dHeight,
+            current = this.props.item.size || DEFAULT_ITEM_SIZE;
 
-        if (dWidth !== this.state.dWidth || dHeight !== this.state.dHeight) {
-            this.setState({
-                dWidth: dWidth,
-                dHeight: dHeight
-            });
+        // don't update if size hasn't changed
+        if (dWidth === this.state.dWidth && dHeight === this.state.dHeight) {
+            return;
         }
+
+        // don't let the item get too small... or negative in size
+        if (current.width + dWidth < MIN_ITEM_WIDTH) {
+            dWidth = MIN_ITEM_WIDTH - current.width;
+        }
+
+        if (current.height + dHeight < MIN_ITEM_HEIGHT) {
+            dHeight = MIN_ITEM_HEIGHT - current.height;
+        }
+
+        this.setState({
+            dWidth: dWidth,
+            dHeight: dHeight
+        });
+
     },
 
     resizeStop: function ( event, ui ) {
         var item = this.props.item;
-        var current = item.size || { width: 100, height: 200 };
+        var current = item.size || DEFAULT_ITEM_SIZE;
 
         var itemToSave = Object.assign({}, item, {
             size: {
-                width: current.width + ui.position.dWidth,
-                height: current.height + ui.position.dHeight
+                width: Math.max(current.width + ui.position.dWidth, MIN_ITEM_WIDTH),
+                height: Math.max(current.height + ui.position.dHeight, MIN_ITEM_HEIGHT)
             }
         });
 
@@ -150,7 +165,6 @@ var PageItem = React.createClass({
                 <Draggable
                     ref="draggable"
                     onDragStop={this.dragStop}
-                    onDragStart={this.dragStart}
                     onResize={this.resize}
                     onResizeStop={this.resizeStop}
                     dragHandle=".handle-move"
