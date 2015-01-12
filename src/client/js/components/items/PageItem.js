@@ -24,7 +24,7 @@ var DEFAULT_ITEM_SIZE = {
 var DEFAULT_ITEM_POSITION = {
     x: 50,
     y: 50
-}
+};
 
 function itemStyle ( item ) {
     var _wrapper = {},
@@ -95,7 +95,7 @@ var PageItem = React.createClass({
         var pageX = dom.outerWidth(pageFrame);
         var pageY = dom.outerHeight(pageFrame);
         var item = this.props.item;
-        var current = item.position || { x: 40, y: 50 };
+        var current = item.position || DEFAULT_ITEM_POSITION;
 
         var dX = (ui.position.left / pageX) * 100;
         var dY = (ui.position.top / pageY) * 100;
@@ -138,13 +138,26 @@ var PageItem = React.createClass({
     },
 
     resizeStop: function ( event, ui ) {
+
+        var pageFrame = dom.closest(event.target, ".page-frame");
+        var pageX = dom.outerWidth(pageFrame);
+        var pageY = dom.outerHeight(pageFrame);
+
         var item = this.props.item;
         var current = item.size || DEFAULT_ITEM_SIZE;
+        var position = item.position || DEFAULT_ITEM_POSITION;
+
+        var dX = (ui.position.dWidth / pageX) * 100;
+        var dY = (ui.position.dHeight / pageY) * 100;
 
         var itemToSave = Object.assign({}, item, {
             size: {
                 width: Math.max(current.width + ui.position.dWidth, MIN_ITEM_WIDTH),
                 height: Math.max(current.height + ui.position.dHeight, MIN_ITEM_HEIGHT)
+            },
+            position: {
+                x: position.x + dX / 2,
+                y: position.y + dY / 2
             }
         });
 
