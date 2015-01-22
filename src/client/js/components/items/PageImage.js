@@ -17,7 +17,7 @@ function pageToImageStyle ( page, screenWidth, screenHeight ) {
         allowScaling,
         allowScrollX,
         allowScrollY
-    } = page;
+        } = page;
 
     var aspectRatio = image.width / image.height;
 

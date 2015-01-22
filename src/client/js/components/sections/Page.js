@@ -11,7 +11,6 @@ var ItemStore = require('../../stores/ItemStore');
 var PageItem = require('../items/PageItem');
 var PageImage = require('../items/PageImage');
 
-
 var Page = React.createClass({
 
     statics: {
@@ -46,7 +45,7 @@ var Page = React.createClass({
 
         var items = this.state.items.map(function ( item, i ) {
             return (
-                <PageItem key={i} item={item} />
+                <PageItem key={item._id} item={item} />
             );
         });
 

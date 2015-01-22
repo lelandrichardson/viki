@@ -51,7 +51,21 @@ gulp.task('js-watch', function() {
 });
 
 gulp.task('sass', function () {
-    gulp.src(['src/client/sass/reset.scss','src/client/sass/*.scss'])
+    gulp.src([
+
+        // reset
+        'src/client/sass/reset.scss',
+
+        // framework
+        'src/client/sass/base.scss',
+        'src/client/sass/button.scss',
+        'src/client/sass/form.scss',
+        'src/client/sass/typography.scss',
+        'src/client/sass/utility.scss',
+
+        // widgets
+        'src/client/sass/*.scss'
+    ])
         .pipe(sass({ style: 'compressed' }).on('error', swallowError))
         .pipe(concat('core.css'))
         .pipe(gulp.dest('dist/css'));

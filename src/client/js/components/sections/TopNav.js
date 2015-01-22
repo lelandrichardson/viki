@@ -11,6 +11,7 @@ var SessionStore = require('../../stores/SessionStore');
 // Components
 var Icon = require('./../shared/Icon').Icon;
 var Tooltip = require('../shared/Tooltip').Tooltip;
+var SearchBar = require('./SearchBar');
 
 
 var TopNav = React.createClass({
@@ -51,6 +52,14 @@ var TopNav = React.createClass({
                             <Icon type="cog" />
                         </a>
                     </Tooltip>
+                </li>
+            );
+        },
+
+        function searchBar () {
+            return (
+                <li key="searchBar" className="inline">
+                    <SearchBar />
                 </li>
             );
         },

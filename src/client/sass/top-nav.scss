@@ -1,4 +1,5 @@
 @import "_zindex";
+@import "_variables";
 
 .top-nav {
 	padding: .8em 0.4em;
@@ -36,4 +37,33 @@
 	&:hover {
 		background-color: rgba(0,0,0,0.3);
 	}
+}
+
+$search-button-width: 35px;
+$search-button-vertical-padding: 7px;
+
+.search-button {
+    color: #fefefe;
+    position: absolute;
+    right: 0;
+    padding: $search-button-vertical-padding 10px;
+}
+
+.search-bar-wrapper {
+    margin: -$search-button-vertical-padding 0;
+    position: relative;
+
+    .search-bar {
+        padding: $search-button-vertical-padding $search-button-width $search-button-vertical-padding 12px;
+        border: none;
+        border-radius: 8px;
+        background-color: rgba(0,0,0,0.4);
+        color: #fefefe;
+        font-size: 0.9em;
+
+
+        &:focus {
+
+        }
+    }
 }

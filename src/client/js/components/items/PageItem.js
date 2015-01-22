@@ -1,5 +1,6 @@
 var React = require('react');
 
+// Utilities
 var dom = require('../../util/dom');
 
 // Actions
@@ -15,6 +16,7 @@ var Link = require('react-router').Link;
 var Icon = require('../shared/Icon').Icon;
 var Draggable = require('../shared/Draggable');
 
+// Constants
 var MIN_ITEM_WIDTH = 30;
 var MIN_ITEM_HEIGHT = 30;
 var DEFAULT_ITEM_SIZE = {
