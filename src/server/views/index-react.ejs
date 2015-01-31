@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Viki</title>
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/lib.css" rel="stylesheet">
+        <link href="/css/core.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="main" class="container"><%- reactOutput %></div>
+        <script src="/js/lib.js"></script>
+        <script><%
+            var data = request.hydrate();
+
+            for (var store in data) { %>
+            Hydrate("<%= store %>", <%- JSON.stringify(data[store]) %>);<%
+            } %>
+        </script>
+        <script src="/js/main.js"></script>
+    </body>
+</html>
